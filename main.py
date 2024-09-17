@@ -49,6 +49,7 @@ st.markdown("""
         .stButton button {
             height: 30px;
             width: 166px;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);  /* Adds shadow to the button */
         }
         </style>
     """, unsafe_allow_html=True)
