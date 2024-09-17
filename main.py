@@ -53,7 +53,7 @@ st.markdown("""
         </style>
     """, unsafe_allow_html=True)
 
-
+st.markdown('<hr style="border:1px solid black">', unsafe_allow_html=True)
 # Initialize session state for script_choice if it does not exist
 if 'script_choice' not in st.session_state:
     st.session_state.script_choice = "about"  # Set default to "about"
