@@ -70,20 +70,25 @@ with col3:
     if st.button('Analytics'):
         st.session_state.script_choice = "visual"
 
-#Based on the user selection, display appropriate input fields and run the script
+# Display information based on user selection
 if st.session_state.script_choice == "about":
-    # Location
-    st.markdown("#### 📍 Location: Dwarka, New Delhi")
-    # Introduction
-    st.write("We’ve deployed IAQ monitors in key locations to ensure a healthy learning environment. Below are the monitoring points across the school:")
-    # Monitoring Locations with icons
+    # Location Information
+   
+    # Introduction to the Tool
+    st.write("Indoor Air Quality (IAQ) monitors at key locations throughout the school to ensure a healthy and optimal learning environment. Below are the monitoring points:")
+    
+    # Monitoring Locations with Icons
     st.markdown("""
-    - **📚 Library:** Ensuring a peaceful, clean environment for reading.
-    - **🏫 Classroom:** Fresh air for students' well-being and focus.
+    - **📚 Library:** Maintaining a peaceful and clean environment for reading.
+    - **🏫 Classroom:** Ensuring fresh air for students' well-being and concentration.
     - **🌳 CPCB Outdoor Monitor:** Collecting outdoor air data for comparison.
-    - **💻 Computer Lab:** Monitoring air quality in tech-heavy spaces.
-    - **🔬 Chemistry Lab:** Maintaining a safe atmosphere for experiments.
+    - **💻 Computer Lab:** Monitoring air quality in technology-intensive areas.
+    - **🔬 Chemistry Lab:** Ensuring a safe atmosphere for scientific experiments.
     """)
+    
+    # Data Extraction and Visualization
+    st.write("#### 📊 Data Extraction and Visualization")
+    st.write("This tool allows you to extract data from these monitors based on your selected date range. Once extracted, the data can be used for detailed analytics and visualization, helping you gain insights and make informed decisions about air quality management.")
 
 if st.session_state.script_choice == "data":
     # Database credentials
