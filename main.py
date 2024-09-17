@@ -176,16 +176,6 @@ if st.session_state.script_choice == "data":
         # Close the connection
         connection.close()
     
-@st.cache
-def get_connection():
-    return mysql.connector.connect(
-        host="139.59.34.149",
-        user="neemdb",
-        password="(#&pxJ&p7JvhA7<B",
-        database="cabh_iaq_db"
-    )
-
-@st.cache
 def fetch_data(query, connection, params):
     return pd.read_sql(query, connection, params=params)
 
@@ -202,8 +192,15 @@ if st.session_state.script_choice == "visual":
     start_date_str = start_date.strftime('%Y-%m-%d')
     end_date_str = end_date.strftime('%Y-%m-%d')
 
-    connection = get_connection()
+    # Connect to the database
+    connection = mysql.connector.connect(
+        host="139.59.34.149",
+        user="neemdb",
+        password="(#&pxJ&p7JvhA7<B",
+        database="cabh_iaq_db"
+    )
 
+    # Determine the table name based on the selected interval
     table_map = {
         '1min': ("reading_db", "cpcb_data"),
         '15min': ("reading_15min", "cpcb_data"),
@@ -211,6 +208,7 @@ if st.session_state.script_choice == "visual":
     }
     table_name, table_name_O = table_map.get(time_interval, ("reading_db", "cpcb_data"))
 
+    # SQL queries
     query_indoor = f"""
         SELECT * FROM {table_name}
         WHERE DATE(datetime) BETWEEN %s AND %s;
@@ -221,6 +219,7 @@ if st.session_state.script_choice == "visual":
     """
 
     try:
+        # Fetch data from the database into DataFrames
         df = fetch_data(query_indoor, connection, params=(start_date_str, end_date_str))
         df1 = fetch_data(query_outdoor, connection, params=(start_date_str, end_date_str))
     except Exception as e:
@@ -228,6 +227,7 @@ if st.session_state.script_choice == "visual":
         df = pd.DataFrame()
         df1 = pd.DataFrame()
     finally:
+        # Close the connection
         connection.close()
     
     # Proceed with visualizing data without re-reading it from CSV
