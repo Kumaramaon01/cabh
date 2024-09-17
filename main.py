@@ -180,7 +180,7 @@ def fetch_data(query, connection, params):
     return pd.read_sql(query, connection, params=params)
 
 if st.session_state.script_choice == "visual":
-    start_date = datetime(datetime.now().year, 6, 1).date()
+    start_date = datetime(datetime.now().year, 7, 1).date()
     end_date = datetime.now().date()
 
     col1, col2 = st.columns(2)
