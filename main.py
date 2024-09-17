@@ -176,66 +176,59 @@ if st.session_state.script_choice == "data":
         # Close the connection
         connection.close()
     
-#Based on the user selection, display appropriate input fields and run the script
+@st.cache
+def get_connection():
+    return mysql.connector.connect(
+        host="139.59.34.149",
+        user="neemdb",
+        password="(#&pxJ&p7JvhA7<B",
+        database="cabh_iaq_db"
+    )
+
+@st.cache
+def fetch_data(query, connection, params):
+    return pd.read_sql(query, connection, params=params)
+
 if st.session_state.script_choice == "visual":
-    host = "139.59.34.149"
-    user = "neemdb"
-    password = "(#&pxJ&p7JvhA7<B"
-    database = "cabh_iaq_db"
-
-
     start_date = datetime(datetime.now().year, 6, 1).date()
     end_date = datetime.now().date()
-    #     start_date = st.date_input("📅 Select Start Date", value=datetime(datetime.now().year, 7, 1))
-    # with col2:
-    #     end_date = st.date_input("📅 Select End Date", datetime.now())
+
     col1, col2 = st.columns(2)
     with col1:
         time_interval = st.selectbox("⏰ Select Time Interval", ['1min', '15min', 'hour'], index=0)
     with col2:
         selected_date = st.date_input("📅 Select Date", value=datetime.now().date())
 
-    # Convert Streamlit date input to string format for SQL query
     start_date_str = start_date.strftime('%Y-%m-%d')
     end_date_str = end_date.strftime('%Y-%m-%d')
 
-    # Connect to the database
-    connection = mysql.connector.connect(
-        host=host,
-        user=user,
-        password=password,
-        database=database
-    )
+    connection = get_connection()
 
-    # Determine the table name based on the selected interval for Indoor data
-    if time_interval == '1min':
-        table_name = "reading_db"
-        table_name_O = "cpcb_data"
-    elif time_interval == '15min':
-        table_name = "reading_15min"
-        table_name_O = "cpcb_data"
-    elif time_interval == 'hour':
-        table_name = "reading_hour"
-        table_name_O = "cpcb_hour"
+    table_map = {
+        '1min': ("reading_db", "cpcb_data"),
+        '15min': ("reading_15min", "cpcb_data"),
+        'hour': ("reading_hour", "cpcb_hour")
+    }
+    table_name, table_name_O = table_map.get(time_interval, ("reading_db", "cpcb_data"))
 
-    # SQL query to fetch indoor data for the specified deviceID and date range
     query_indoor = f"""
         SELECT * FROM {table_name}
-        WHERE DATE(datetime) BETWEEN '{start_date_str}' AND '{end_date_str}';
+        WHERE DATE(datetime) BETWEEN %s AND %s;
     """
-
-    # SQL query to fetch outdoor data for the specified deviceID and date range
     query_outdoor = f"""
         SELECT * FROM {table_name_O}
-        WHERE DATE(datetime) BETWEEN '{start_date_str}' AND '{end_date_str}';
+        WHERE DATE(datetime) BETWEEN %s AND %s;
     """
 
-    # Fetch data from the database into DataFrames
-    df = pd.read_sql(query_indoor, connection)
-    df1 = pd.read_sql(query_outdoor, connection)
-
-    # Close the connection
-    connection.close()
+    try:
+        df = fetch_data(query_indoor, connection, params=(start_date_str, end_date_str))
+        df1 = fetch_data(query_outdoor, connection, params=(start_date_str, end_date_str))
+    except Exception as e:
+        st.error(f"Error fetching data: {e}")
+        df = pd.DataFrame()
+        df1 = pd.DataFrame()
+    finally:
+        connection.close()
     
     # Proceed with visualizing data without re-reading it from CSV
     try:   
