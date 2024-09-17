@@ -1,0 +1,6 @@
+/* Hide the GitHub icon */
+.stApp [class*="stIcon"] {
+    display: none !important;
+}
+
+
