@@ -49,12 +49,11 @@ st.markdown("""
         .stButton button {
             height: 30px;
             width: 166px;
-            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);  /* Adds shadow to the button */
         }
         </style>
     """, unsafe_allow_html=True)
 
-st.markdown('<hr style="border:1px solid black">', unsafe_allow_html=True)
+
 # Initialize session state for script_choice if it does not exist
 if 'script_choice' not in st.session_state:
     st.session_state.script_choice = "about"  # Set default to "about"
@@ -70,25 +69,20 @@ with col3:
     if st.button('Analytics'):
         st.session_state.script_choice = "visual"
 
-# Display information based on user selection
+#Based on the user selection, display appropriate input fields and run the script
 if st.session_state.script_choice == "about":
-    # Location Information
-   
-    # Introduction to the Tool
-    st.write("Indoor Air Quality (IAQ) monitors at key locations throughout the school to ensure a healthy and optimal learning environment. Below are the monitoring points:")
-    
-    # Monitoring Locations with Icons
+    # Location
+    st.markdown("#### 📍 Location: Dwarka, New Delhi")
+    # Introduction
+    st.write("We’ve deployed IAQ monitors in key locations to ensure a healthy learning environment. Below are the monitoring points across the school:")
+    # Monitoring Locations with icons
     st.markdown("""
-    - **📚 Library:** Maintaining a peaceful and clean environment for reading.
-    - **🏫 Classroom:** Ensuring fresh air for students' well-being and concentration.
+    - **📚 Library:** Ensuring a peaceful, clean environment for reading.
+    - **🏫 Classroom:** Fresh air for students' well-being and focus.
     - **🌳 CPCB Outdoor Monitor:** Collecting outdoor air data for comparison.
-    - **💻 Computer Lab:** Monitoring air quality in technology-intensive areas.
-    - **🔬 Chemistry Lab:** Ensuring a safe atmosphere for scientific experiments.
+    - **💻 Computer Lab:** Monitoring air quality in tech-heavy spaces.
+    - **🔬 Chemistry Lab:** Maintaining a safe atmosphere for experiments.
     """)
-    
-    # Data Extraction and Visualization
-    st.write("#### 📊 Data Extraction and Visualization")
-    st.write("This tool allows you to extract data from these monitors based on your selected date range. Once extracted, the data can be used for detailed analytics and visualization, helping you gain insights and make informed decisions about air quality management.")
 
 if st.session_state.script_choice == "data":
     # Database credentials
@@ -176,73 +170,52 @@ if st.session_state.script_choice == "data":
         # Close the connection
         connection.close()
     
-def fetch_data(query, connection, params):
-    return pd.read_sql(query, connection, params=params)
-
+#Based on the user selection, display appropriate input fields and run the script
 if st.session_state.script_choice == "visual":
-    start_date = datetime(datetime.now().year, 7, 1).date()
-    end_date = datetime.now().date()
 
+    start_date = datetime(datetime.now().year, 6, 1).date()
+    end_date = datetime.now().date()
     col1, col2 = st.columns(2)
     with col1:
         time_interval = st.selectbox("⏰ Select Time Interval", ['1min', '15min', 'hour'], index=0)
     with col2:
         selected_date = st.date_input("📅 Select Date", value=datetime.now().date())
+    
+    reading_db = pd.read_csv("database/reading_db.csv")
+    cpcb_data = pd.read_csv("database/cpcb_data.csv")
+    reading_15min = pd.read_csv("database/reading_15min.csv")
+    cpcb_data = pd.read_csv("database/cpcb_data.csv")
+    reading_hour = pd.read_csv("database/reading_hr.csv")
+    cpcb_hour = pd.read_csv("database/cpcb_hour.csv")
 
+    # Convert Streamlit date input to string format for SQL query
     start_date_str = start_date.strftime('%Y-%m-%d')
     end_date_str = end_date.strftime('%Y-%m-%d')
 
-    # Connect to the database
-    connection = mysql.connector.connect(
-        host="139.59.34.149",
-        user="neemdb",
-        password="(#&pxJ&p7JvhA7<B",
-        database="cabh_iaq_db"
-    )
+    # Determine the table name based on the selected interval for Indoor data
+    if time_interval == '1min':
+        df = reading_db
+        df1 = cpcb_data
+    elif time_interval == '15min':
+        df = reading_15min
+        df1 = cpcb_data
+    elif time_interval == 'hour':
+        df = reading_hour
+        df1 = cpcb_hour
 
-    # Determine the table name based on the selected interval
-    table_map = {
-        '1min': ("reading_db", "cpcb_data"),
-        '15min': ("reading_15min", "cpcb_data"),
-        'hour': ("reading_hour", "cpcb_hour")
-    }
-    table_name, table_name_O = table_map.get(time_interval, ("reading_db", "cpcb_data"))
-
-    # SQL queries
-    query_indoor = f"""
-        SELECT * FROM {table_name}
-        WHERE DATE(datetime) BETWEEN %s AND %s;
-    """
-    query_outdoor = f"""
-        SELECT * FROM {table_name_O}
-        WHERE DATE(datetime) BETWEEN %s AND %s;
-    """
-
-    try:
-        # Fetch data from the database into DataFrames
-        df = fetch_data(query_indoor, connection, params=(start_date_str, end_date_str))
-        df1 = fetch_data(query_outdoor, connection, params=(start_date_str, end_date_str))
-    except Exception as e:
-        st.error(f"Error fetching data: {e}")
-        df = pd.DataFrame()
-        df1 = pd.DataFrame()
-    finally:
-        # Close the connection
-        connection.close()
-    
     # Proceed with visualizing data without re-reading it from CSV
     try:   
         if time_interval == "1min" and not df.empty and not df1.empty:
             # Ensure 'deviceID' column is treated as string and remove any leading/trailing spaces
             df['deviceID'] = df['deviceID'].astype(str).str.strip()
             df1['deviceID'] = df1['deviceID'].astype(str).str.strip()
-        
+            
             # Create individual dataframes based on deviceID
-            SepClassroom = df[df['deviceID'] == '1202240029']
-            SepCompLab = df[df['deviceID'] == '1202240010']
-            SepLibrary = df[df['deviceID'] == '1202240028']
-            SepChemLab = df[df['deviceID'] == '1202240012']
-            Sepcpcb = df1[df1['deviceID'] == 'DELDPCC016']
+            SepClassroom = df[df['deviceID'] == '1202240029'].copy()
+            SepCompLab = df[df['deviceID'] == '1202240010'].copy()
+            SepLibrary = df[df['deviceID'] == '1202240028'].copy()
+            SepChemLab = df[df['deviceID'] == '1202240012'].copy()
+            Sepcpcb = df1[df1['deviceID'] == 'DELDPCC016'].copy()
             
             # Convert 'datetime' to proper datetime format
             SepClassroom['datetime'] = pd.to_datetime(SepClassroom['datetime'], format='%d-%m-%Y %H:%M')
