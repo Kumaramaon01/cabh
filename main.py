@@ -179,9 +179,11 @@ if st.session_state.script_choice == "visual":
     with col1:
         time_interval = st.selectbox("⏰ Select Time Interval", ['1min', '15min', 'hour'], index=0)
     with col2:
-        selected_date = st.date_input("📅 Select Date", value=datetime.now().date())
-    
-    reading_db = pd.read_csv("database/reading_db.csv")
+        selected_date = st.date_input("📅 Select Date", value=datetime(2024, 9, 17).date())
+    with col3:
+        uploaded_file = st.file_uploader("Upload 1min CSV file", type="csv", accept_multiple_files=False)
+        
+    reading_db = uploaded_file
     cpcb_data = pd.read_csv("database/cpcb_data.csv")
     reading_15min = pd.read_csv("database/reading_15min.csv")
     cpcb_data = pd.read_csv("database/cpcb_data.csv")
