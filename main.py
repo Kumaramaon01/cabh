@@ -412,19 +412,6 @@ if st.session_state.script_choice == "people":
 
         except Exception as e:
             st.info(f"🚨 Please upload right file for choosen Time Interval!")
-            
-    # Location
-    st.markdown("#### 📍 Location: Dwarka, New Delhi")
-    # Introduction
-    st.write("We’ve deployed IAQ monitors in key locations to ensure a healthy learning environment. Below are the monitoring points across the school:")
-    # Monitoring Locations with icons
-    st.markdown("""
-    - **📚 Library:** Ensuring a peaceful, clean environment for reading.
-    - **🏫 Classroom:** Fresh air for students' well-being and focus.
-    - **🌳 CPCB Outdoor Monitor:** Collecting outdoor air data for comparison.
-    - **💻 Computer Lab:** Monitoring air quality in tech-heavy spaces.
-    - **🔬 Chemistry Lab:** Maintaining a safe atmosphere for experiments.
-    """)
 
 if st.session_state.script_choice == "data":
     # Database credentials
