@@ -1,7 +1,6 @@
 import pandas as pd
 import streamlit as st
 import plotly.graph_objects as go
-import pages
 import mysql.connector
 from datetime import datetime
 from datetime import datetime, timedelta
