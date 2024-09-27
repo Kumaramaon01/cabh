@@ -175,7 +175,7 @@ if st.session_state.script_choice == "people":
     else:
         # Proceed with visualizing data
         try:    
-            if time_interval == "1min":
+            if time_interval == "1min" or time_interval == "15min" or time_interval == "hour":
                 # Ensure 'deviceID' column is treated as string and remove any leading/trailing spaces
                 df['deviceID'] = df['deviceID'].astype(str).str.strip()
                 
