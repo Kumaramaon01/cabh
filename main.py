@@ -82,7 +82,8 @@ with col2:
 with col3:
     if st.button('Analytics'):
         st.session_state.script_choice = "visual"
-
+# Set the default selected date to one day before the current date
+default_date = datetime.now() - timedelta(days=1)
 #Based on the user selection, display appropriate input fields and run the script
 if st.session_state.script_choice == "people":
     host = "139.59.34.149"
