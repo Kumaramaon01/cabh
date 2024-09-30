@@ -468,7 +468,7 @@ if st.session_state.script_choice == "people":
                     fig6.add_trace(go.Scatter(x=gurneet_mannat_temp.index, y=gurneet_mannat_hum, mode='lines', name='BR1', line=dict(color='red')))
                     fig6.add_trace(go.Scatter(x=gurneet_prabhash_temp.index, y=gurneet_prabhash_hum, mode='lines', name='LR1', line=dict(color='blue')))
             
-                threshold_lines = [(25, 'PM2.5', fig1), (50, 'PM10', fig2), (500, 'VOC', fig3), (1000, 'CO2', fig4), (40, 'Temp', fig5), (70, 'Humidity', fig6)]
+                threshold_lines = [(25, 'PM2.5', fig1), (50, 'PM10', fig2), (500, 'VOC', fig3), (1000, 'CO2', fig4), (39, 'Temp', fig5), (70, 'Humidity', fig6)]
                 for threshold, name, fig in threshold_lines:
                     fig.add_trace(go.Scatter(
                         x=[start_time, end_time], y=[threshold, threshold],
@@ -477,7 +477,12 @@ if st.session_state.script_choice == "people":
                     ))
             
                 for fig, title in zip([fig1, fig2, fig3, fig4, fig5, fig6], ['PM2.5', 'PM10', 'VOC', 'CO2', 'Temp', 'Humidity']):
-                    yaxis_title = f'{title} Concentration (ppm)' if title == 'CO2' else f'{title} Concentration (µg/m³)'
+                    yaxis_title = (
+                        f'{title} Concentration (ppm)' if title == 'CO2' 
+                        else f'{title} Temperature (°C)' if title == 'Temp' 
+                        else f'{title} Concentration (µg/m³)' if title == 'Humidity'
+                        else f'{title}' Concentration (µg/m³)' 
+                    )
                     fig.update_layout(
                         title=f'🔴 {title} Levels in Various Locations',
                         xaxis_title='Date & Time',
