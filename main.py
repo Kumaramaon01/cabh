@@ -525,7 +525,7 @@ if st.session_state.script_choice == "people":
                     st.plotly_chart(fig, use_container_width=True)
 
                 # with col2:
-                for title in ['PM2.5', 'PM10', 'VOC', 'CO2', 'Temp', 'Humidity']:
+                # for title in ['PM2.5', 'PM10', 'VOC', 'CO2', 'Temp', 'Humidity']:
                     st.markdown(f"### {title} Remark")
             
                     # Fetch and display the existing remark if available
