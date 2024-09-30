@@ -495,7 +495,7 @@ if st.session_state.script_choice == "people":
                 def get_user_remarks(user, date):
                     c.execute('SELECT remark, date FROM remarks WHERE user = ? AND date = ?', (user, date))
                     return c.fetchall()  
-                col1, col2 = st.columns([4, 1])  # 80% for figures, 20% for remarks
+                col1, col2 = st.columns([5, 1])  # 80% for figures, 20% for remarks
                 date_str = selected_date.strftime("%Y-%m-%d") 
                 existing_remarks = get_user_remarks(people, date_str)
                 with col1:
@@ -519,7 +519,7 @@ if st.session_state.script_choice == "people":
                             yaxis_title=yaxis_title,
                             legend=dict(orientation="h", yanchor="bottom", y=-0.5, xanchor="center", x=0.5),
                             hovermode='x unified',
-                            xaxis=dict(domain=[0, 0.8]) 
+                            # xaxis=dict(domain=[0, 0.8]) 
                         )
                         st.plotly_chart(fig, use_container_width=True)
 
