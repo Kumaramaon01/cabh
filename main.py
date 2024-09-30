@@ -211,8 +211,14 @@ if st.session_state.script_choice == "people":
                 gurneet_mannat_co2 = Gurneet_Mannat_Room.loc[start_time:end_time, 'co2']
                 gurneet_prabhash_co2 = Gurneet_Prabhash_Room.loc[start_time:end_time, 'co2']
 
+                gurneet_mannat_temp = Gurneet_Mannat_Room.loc[start_time:end_time, 'temp']
+                gurneet_prabhash_temp = Gurneet_Prabhash_Room.loc[start_time:end_time, 'temp']
+
+                gurneet_mannat_hum = Gurneet_Mannat_Room.loc[start_time:end_time, 'humidity']
+                gurneet_prabhash_hum = Gurneet_Prabhash_Room.loc[start_time:end_time, 'humidity']
+
                 # Create figures
-                fig1, fig2, fig3, fig4 = go.Figure(), go.Figure(), go.Figure(), go.Figure()
+                fig1, fig2, fig3, fig4, fig5, fig6 = go.Figure(), go.Figure(), go.Figure(), go.Figure(), go.Figure(), go.Figure()
 
                 # Add traces for each dataframe with specified colors
                 if people == 'Gurneet':
@@ -228,6 +234,12 @@ if st.session_state.script_choice == "people":
                     fig4.add_trace(go.Scatter(x=gurneet_mannat_co2.index, y=gurneet_mannat_co2, mode='lines', name='Mannat Room', line=dict(color='blue')))
                     fig4.add_trace(go.Scatter(x=gurneet_prabhash_co2.index, y=gurneet_prabhash_co2, mode='lines', name='Prabhash Room', line=dict(color='violet')))
 
+                    fig5.add_trace(go.Scatter(x=gurneet_mannat_temp.index, y=gurneet_mannat_temp, mode='lines', name='Mannat Room', line=dict(color='blue')))
+                    fig5.add_trace(go.Scatter(x=gurneet_prabhash_temp.index, y=gurneet_prabhash_temp, mode='lines', name='Prabhash Room', line=dict(color='violet')))
+
+                    fig6.add_trace(go.Scatter(x=gurneet_mannat_temp.index, y=gurneet_mannat_hum, mode='lines', name='Mannat Room', line=dict(color='blue')))
+                    fig6.add_trace(go.Scatter(x=gurneet_prabhash_temp.index, y=gurneet_prabhash_hum, mode='lines', name='Prabhash Room', line=dict(color='violet')))
+                
                 elif people == "Piyush":
                     fig1.add_trace(go.Scatter(x=gurneet_mannat_pm25.index, y=gurneet_mannat_pm25, mode='lines', name='Bedroom', line=dict(color='blue')))
                     fig1.add_trace(go.Scatter(x=gurneet_prabhash_pm25.index, y=gurneet_prabhash_pm25, mode='lines', name='Living', line=dict(color='violet')))
@@ -241,6 +253,12 @@ if st.session_state.script_choice == "people":
                     fig4.add_trace(go.Scatter(x=gurneet_mannat_co2.index, y=gurneet_mannat_co2, mode='lines', name='Bedroom', line=dict(color='blue')))
                     fig4.add_trace(go.Scatter(x=gurneet_prabhash_co2.index, y=gurneet_prabhash_co2, mode='lines', name='Living', line=dict(color='violet')))
 
+                    fig5.add_trace(go.Scatter(x=gurneet_mannat_temp.index, y=gurneet_mannat_temp, mode='lines', name='Bedroom', line=dict(color='blue')))
+                    fig5.add_trace(go.Scatter(x=gurneet_prabhash_temp.index, y=gurneet_prabhash_temp, mode='lines', name='Living', line=dict(color='violet')))
+
+                    fig6.add_trace(go.Scatter(x=gurneet_mannat_temp.index, y=gurneet_mannat_hum, mode='lines', name='Bedroom', line=dict(color='blue')))
+                    fig6.add_trace(go.Scatter(x=gurneet_prabhash_temp.index, y=gurneet_prabhash_hum, mode='lines', name='Living', line=dict(color='violet')))
+                
                 elif people == "Robin":
                     fig1.add_trace(go.Scatter(x=gurneet_mannat_pm25.index, y=gurneet_mannat_pm25, mode='lines', name='Bedroom', line=dict(color='blue')))
                     fig1.add_trace(go.Scatter(x=gurneet_prabhash_pm25.index, y=gurneet_prabhash_pm25, mode='lines', name='Living', line=dict(color='violet')))
@@ -254,6 +272,12 @@ if st.session_state.script_choice == "people":
                     fig4.add_trace(go.Scatter(x=gurneet_mannat_co2.index, y=gurneet_mannat_co2, mode='lines', name='Bedroom', line=dict(color='blue')))
                     fig4.add_trace(go.Scatter(x=gurneet_prabhash_co2.index, y=gurneet_prabhash_co2, mode='lines', name='Living', line=dict(color='violet')))
 
+                    fig5.add_trace(go.Scatter(x=gurneet_mannat_temp.index, y=gurneet_mannat_temp, mode='lines', name='Bedroom', line=dict(color='blue')))
+                    fig5.add_trace(go.Scatter(x=gurneet_prabhash_temp.index, y=gurneet_prabhash_temp, mode='lines', name='Living', line=dict(color='violet')))
+
+                    fig6.add_trace(go.Scatter(x=gurneet_mannat_temp.index, y=gurneet_mannat_hum, mode='lines', name='Bedroom', line=dict(color='blue')))
+                    fig6.add_trace(go.Scatter(x=gurneet_prabhash_temp.index, y=gurneet_prabhash_hum, mode='lines', name='Living', line=dict(color='violet')))
+                
                 elif people == "Surender":
                     fig1.add_trace(go.Scatter(x=gurneet_mannat_pm25.index, y=gurneet_mannat_pm25, mode='lines', name='Bedroom', line=dict(color='blue')))
                     fig1.add_trace(go.Scatter(x=gurneet_prabhash_pm25.index, y=gurneet_prabhash_pm25, mode='lines', name='Living', line=dict(color='violet')))
@@ -267,6 +291,12 @@ if st.session_state.script_choice == "people":
                     fig4.add_trace(go.Scatter(x=gurneet_mannat_co2.index, y=gurneet_mannat_co2, mode='lines', name='Bedroom', line=dict(color='blue')))
                     fig4.add_trace(go.Scatter(x=gurneet_prabhash_co2.index, y=gurneet_prabhash_co2, mode='lines', name='Living', line=dict(color='violet')))
 
+                    fig5.add_trace(go.Scatter(x=gurneet_mannat_temp.index, y=gurneet_mannat_temp, mode='lines', name='Bedroom', line=dict(color='blue')))
+                    fig5.add_trace(go.Scatter(x=gurneet_prabhash_temp.index, y=gurneet_prabhash_temp, mode='lines', name='Living', line=dict(color='violet')))
+
+                    fig6.add_trace(go.Scatter(x=gurneet_mannat_temp.index, y=gurneet_mannat_hum, mode='lines', name='Bedroom', line=dict(color='blue')))
+                    fig6.add_trace(go.Scatter(x=gurneet_prabhash_temp.index, y=gurneet_prabhash_hum, mode='lines', name='Living', line=dict(color='violet')))
+                
                 elif people == "EDS D Block":
                     fig1.add_trace(go.Scatter(x=gurneet_mannat_pm25.index, y=gurneet_mannat_pm25, mode='lines', name='EDS Out', line=dict(color='blue')))
                     fig1.add_trace(go.Scatter(x=gurneet_prabhash_pm25.index, y=gurneet_prabhash_pm25, mode='lines', name='Conference', line=dict(color='violet')))
@@ -280,6 +310,12 @@ if st.session_state.script_choice == "people":
                     fig4.add_trace(go.Scatter(x=gurneet_mannat_co2.index, y=gurneet_mannat_co2, mode='lines', name='EDS Out', line=dict(color='blue')))
                     fig4.add_trace(go.Scatter(x=gurneet_prabhash_co2.index, y=gurneet_prabhash_co2, mode='lines', name='Conference', line=dict(color='violet')))
 
+                    fig5.add_trace(go.Scatter(x=gurneet_mannat_temp.index, y=gurneet_mannat_temp, mode='lines', name='EDS Out', line=dict(color='blue')))
+                    fig5.add_trace(go.Scatter(x=gurneet_prabhash_temp.index, y=gurneet_prabhash_temp, mode='lines', name='Conference', line=dict(color='violet')))
+
+                    fig6.add_trace(go.Scatter(x=gurneet_mannat_temp.index, y=gurneet_mannat_hum, mode='lines', name='EDS Out', line=dict(color='blue')))
+                    fig6.add_trace(go.Scatter(x=gurneet_prabhash_temp.index, y=gurneet_prabhash_hum, mode='lines', name='Conference', line=dict(color='violet')))
+                
                 elif people == "Piyush":
                     fig1.add_trace(go.Scatter(x=gurneet_prabhash_pm25.index, y=gurneet_prabhash_pm25, mode='lines', name='Living', line=dict(color='red')))
                     fig1.add_trace(go.Scatter(x=gurneet_mannat_pm25.index, y=gurneet_mannat_pm25, mode='lines', name='Bedroom', line=dict(color='blue')))
@@ -292,6 +328,12 @@ if st.session_state.script_choice == "people":
             
                     fig4.add_trace(go.Scatter(x=gurneet_prabhash_co2.index, y=gurneet_prabhash_co2, mode='lines', name='Living', line=dict(color='red')))
                     fig4.add_trace(go.Scatter(x=gurneet_mannat_co2.index, y=gurneet_mannat_co2, mode='lines', name='Bedroom', line=dict(color='blue')))
+
+                    fig5.add_trace(go.Scatter(x=gurneet_mannat_temp.index, y=gurneet_mannat_temp, mode='lines', name='Living', line=dict(color='blue')))
+                    fig5.add_trace(go.Scatter(x=gurneet_prabhash_temp.index, y=gurneet_prabhash_temp, mode='lines', name='Bedroom', line=dict(color='violet')))
+
+                    fig6.add_trace(go.Scatter(x=gurneet_mannat_temp.index, y=gurneet_mannat_hum, mode='lines', name='Living', line=dict(color='blue')))
+                    fig6.add_trace(go.Scatter(x=gurneet_prabhash_temp.index, y=gurneet_prabhash_hum, mode='lines', name='Bedroom', line=dict(color='violet')))
             
                 elif people == "Lakshmi":
                     fig1.add_trace(go.Scatter(x=gurneet_mannat_pm25.index, y=gurneet_mannat_pm25, mode='lines', name='Living', line=dict(color='blue')))
@@ -306,6 +348,12 @@ if st.session_state.script_choice == "people":
                     fig4.add_trace(go.Scatter(x=gurneet_mannat_co2.index, y=gurneet_mannat_co2, mode='lines', name='Living', line=dict(color='blue')))
                     fig4.add_trace(go.Scatter(x=gurneet_prabhash_co2.index, y=gurneet_prabhash_co2, mode='lines', name='Kitchen', line=dict(color='violet')))
 
+                    fig5.add_trace(go.Scatter(x=gurneet_mannat_temp.index, y=gurneet_mannat_temp, mode='lines', name='Living', line=dict(color='blue')))
+                    fig5.add_trace(go.Scatter(x=gurneet_prabhash_temp.index, y=gurneet_prabhash_temp, mode='lines', name='Kitchen', line=dict(color='violet')))
+
+                    fig6.add_trace(go.Scatter(x=gurneet_mannat_temp.index, y=gurneet_mannat_hum, mode='lines', name='Living', line=dict(color='blue')))
+                    fig6.add_trace(go.Scatter(x=gurneet_prabhash_temp.index, y=gurneet_prabhash_hum, mode='lines', name='Kitchen', line=dict(color='violet')))
+            
                 elif people == "Manpreet":
                     fig1.add_trace(go.Scatter(x=gurneet_mannat_pm25.index, y=gurneet_mannat_pm25, mode='lines', name='Drawing', line=dict(color='blue')))
                     # fig1.add_trace(go.Scatter(x=gurneet_prabhash_pm25.index, y=gurneet_prabhash_pm25, mode='lines', name='Kitchen', line=dict(color='violet')))
@@ -319,6 +367,12 @@ if st.session_state.script_choice == "people":
                     fig4.add_trace(go.Scatter(x=gurneet_mannat_co2.index, y=gurneet_mannat_co2, mode='lines', name='Drawing', line=dict(color='blue')))
                     # fig4.add_trace(go.Scatter(x=gurneet_prabhash_co2.index, y=gurneet_prabhash_co2, mode='lines', name='Kitchen', line=dict(color='violet')))
 
+                    fig5.add_trace(go.Scatter(x=gurneet_mannat_temp.index, y=gurneet_mannat_temp, mode='lines', name='Drawing', line=dict(color='blue')))
+                    # fig5.add_trace(go.Scatter(x=gurneet_prabhash_temp.index, y=gurneet_prabhash_temp, mode='lines', name='Bedroom', line=dict(color='violet')))
+
+                    fig6.add_trace(go.Scatter(x=gurneet_mannat_temp.index, y=gurneet_mannat_hum, mode='lines', name='Drawing', line=dict(color='blue')))
+                    # fig6.add_trace(go.Scatter(x=gurneet_prabhash_temp.index, y=gurneet_prabhash_hum, mode='lines', name='Bedroom', line=dict(color='violet')))
+            
                 elif people == "Nidhi":
                     fig1.add_trace(go.Scatter(x=gurneet_mannat_pm25.index, y=gurneet_mannat_pm25, mode='lines', name='Bedroom', line=dict(color='blue')))
                     # fig1.add_trace(go.Scatter(x=gurneet_prabhash_pm25.index, y=gurneet_prabhash_pm25, mode='lines', name='Kitchen', line=dict(color='violet')))
@@ -332,6 +386,12 @@ if st.session_state.script_choice == "people":
                     fig4.add_trace(go.Scatter(x=gurneet_mannat_co2.index, y=gurneet_mannat_co2, mode='lines', name='Bedroom', line=dict(color='blue')))
                     # fig4.add_trace(go.Scatter(x=gurneet_prabhash_co2.index, y=gurneet_prabhash_co2, mode='lines', name='Kitchen', line=dict(color='violet')))
 
+                    fig5.add_trace(go.Scatter(x=gurneet_mannat_temp.index, y=gurneet_mannat_temp, mode='lines', name='Bedroom', line=dict(color='blue')))
+                    # fig5.add_trace(go.Scatter(x=gurneet_prabhash_temp.index, y=gurneet_prabhash_temp, mode='lines', name='Bedroom', line=dict(color='violet')))
+
+                    fig6.add_trace(go.Scatter(x=gurneet_mannat_temp.index, y=gurneet_mannat_hum, mode='lines', name='Bedroom', line=dict(color='blue')))
+                    # fig6.add_trace(go.Scatter(x=gurneet_prabhash_temp.index, y=gurneet_prabhash_hum, mode='lines', name='Bedroom', line=dict(color='violet')))
+                
                 elif people == "TT": # Home
                     fig1.add_trace(go.Scatter(x=gurneet_mannat_pm25.index, y=gurneet_mannat_pm25, mode='lines', name='Home', line=dict(color='blue')))
                     # fig1.add_trace(go.Scatter(x=gurneet_prabhash_pm25.index, y=gurneet_prabhash_pm25, mode='lines', name='Kitchen', line=dict(color='violet')))
@@ -344,6 +404,12 @@ if st.session_state.script_choice == "people":
 
                     fig4.add_trace(go.Scatter(x=gurneet_mannat_co2.index, y=gurneet_mannat_co2, mode='lines', name='Home', line=dict(color='blue')))
                     # fig4.add_trace(go.Scatter(x=gurneet_prabhash_co2.index, y=gurneet_prabhash_co2, mode='lines', name='Kitchen', line=dict(color='violet')))
+
+                    fig5.add_trace(go.Scatter(x=gurneet_mannat_temp.index, y=gurneet_mannat_temp, mode='lines', name='Home', line=dict(color='blue')))
+                    # fig5.add_trace(go.Scatter(x=gurneet_prabhash_temp.index, y=gurneet_prabhash_temp, mode='lines', name='Bedroom', line=dict(color='violet')))
+
+                    fig6.add_trace(go.Scatter(x=gurneet_mannat_temp.index, y=gurneet_mannat_hum, mode='lines', name='Home', line=dict(color='blue')))
+                    # fig6.add_trace(go.Scatter(x=gurneet_prabhash_temp.index, y=gurneet_prabhash_hum, mode='lines', name='Bedroom', line=dict(color='violet')))
 
                 elif people == "Sheetal": # Home
                     fig1.add_trace(go.Scatter(x=gurneet_mannat_pm25.index, y=gurneet_mannat_pm25, mode='lines', name='Living', line=dict(color='blue')))
@@ -358,6 +424,12 @@ if st.session_state.script_choice == "people":
                     fig4.add_trace(go.Scatter(x=gurneet_mannat_co2.index, y=gurneet_mannat_co2, mode='lines', name='Living', line=dict(color='blue')))
                     # fig4.add_trace(go.Scatter(x=gurneet_prabhash_co2.index, y=gurneet_prabhash_co2, mode='lines', name='Kitchen', line=dict(color='violet')))
 
+                    fig5.add_trace(go.Scatter(x=gurneet_mannat_temp.index, y=gurneet_mannat_temp, mode='lines', name='Living', line=dict(color='blue')))
+                    # fig5.add_trace(go.Scatter(x=gurneet_prabhash_temp.index, y=gurneet_prabhash_temp, mode='lines', name='Bedroom', line=dict(color='violet')))
+
+                    fig6.add_trace(go.Scatter(x=gurneet_mannat_temp.index, y=gurneet_mannat_hum, mode='lines', name='Living', line=dict(color='blue')))
+                    # fig6.add_trace(go.Scatter(x=gurneet_prabhash_temp.index, y=gurneet_prabhash_hum, mode='lines', name='Bedroom', line=dict(color='violet')))
+
                 elif people == "Hisham":
                     fig1.add_trace(go.Scatter(x=gurneet_prabhash_pm25.index, y=gurneet_prabhash_pm25, mode='lines', name='Living', line=dict(color='red')))
                     fig1.add_trace(go.Scatter(x=gurneet_mannat_pm25.index, y=gurneet_mannat_pm25, mode='lines', name='Bedroom', line=dict(color='blue')))
@@ -370,6 +442,12 @@ if st.session_state.script_choice == "people":
             
                     fig4.add_trace(go.Scatter(x=gurneet_prabhash_co2.index, y=gurneet_prabhash_co2, mode='lines', name='Living', line=dict(color='red')))
                     fig4.add_trace(go.Scatter(x=gurneet_mannat_co2.index, y=gurneet_mannat_co2, mode='lines', name='Bedroom', line=dict(color='blue')))
+
+                    fig5.add_trace(go.Scatter(x=gurneet_mannat_temp.index, y=gurneet_mannat_temp, mode='lines', name='Living', line=dict(color='red')))
+                    fig5.add_trace(go.Scatter(x=gurneet_prabhash_temp.index, y=gurneet_prabhash_temp, mode='lines', name='Bedroom', line=dict(color='blue')))
+
+                    fig6.add_trace(go.Scatter(x=gurneet_mannat_temp.index, y=gurneet_mannat_hum, mode='lines', name='Living', line=dict(color='red')))
+                    fig6.add_trace(go.Scatter(x=gurneet_prabhash_temp.index, y=gurneet_prabhash_hum, mode='lines', name='Bedroom', line=dict(color='blue')))
             
                 elif people == "Mariyam":
                     fig1.add_trace(go.Scatter(x=gurneet_prabhash_pm25.index, y=gurneet_prabhash_pm25, mode='lines', name='BR1', line=dict(color='red')))
@@ -383,9 +461,14 @@ if st.session_state.script_choice == "people":
             
                     fig4.add_trace(go.Scatter(x=gurneet_prabhash_co2.index, y=gurneet_prabhash_co2, mode='lines', name='BR1', line=dict(color='red')))
                     fig4.add_trace(go.Scatter(x=gurneet_mannat_co2.index, y=gurneet_mannat_co2, mode='lines', name='LR1', line=dict(color='blue')))
+
+                    fig5.add_trace(go.Scatter(x=gurneet_mannat_temp.index, y=gurneet_mannat_temp, mode='lines', name='BR1', line=dict(color='red')))
+                    fig5.add_trace(go.Scatter(x=gurneet_prabhash_temp.index, y=gurneet_prabhash_temp, mode='lines', name='LR1', line=dict(color='blue')))
+
+                    fig6.add_trace(go.Scatter(x=gurneet_mannat_temp.index, y=gurneet_mannat_hum, mode='lines', name='BR1', line=dict(color='red')))
+                    fig6.add_trace(go.Scatter(x=gurneet_prabhash_temp.index, y=gurneet_prabhash_hum, mode='lines', name='LR1', line=dict(color='blue')))
             
-                # Add horizontal dotted threshold lines
-                threshold_lines = [(25, 'PM2.5', fig1), (50, 'PM10', fig2), (500, 'VOC', fig3), (1000, 'CO2', fig4)]
+                threshold_lines = [(25, 'PM2.5', fig1), (50, 'PM10', fig2), (500, 'VOC', fig3), (1000, 'CO2', fig4), (40, 'Temp', fig5), (70, 'Humidity', fig6)]
                 for threshold, name, fig in threshold_lines:
                     fig.add_trace(go.Scatter(
                         x=[start_time, end_time], y=[threshold, threshold],
@@ -393,11 +476,8 @@ if st.session_state.script_choice == "people":
                         name=f"Threshold {name}"
                     ))
             
-                # Update layouts for all figures with appropriate y-axis titles
-                for fig, title in zip([fig1, fig2, fig3, fig4], ['PM2.5', 'PM10', 'VOC', 'CO2']):
-                    # Check for CO2 to set y-axis units
+                for fig, title in zip([fig1, fig2, fig3, fig4, fig5, fig6], ['PM2.5', 'PM10', 'VOC', 'CO2', 'Temp', 'Humidity']):
                     yaxis_title = f'{title} Concentration (ppm)' if title == 'CO2' else f'{title} Concentration (µg/m³)'
-                    
                     fig.update_layout(
                         title=f'🔴 {title} Levels in Various Locations',
                         xaxis_title='Date & Time',
@@ -405,22 +485,15 @@ if st.session_state.script_choice == "people":
                         legend=dict(orientation="h", yanchor="bottom", y=-0.5, xanchor="center", x=0.5),
                         hovermode='x unified'
                     )
-
-                    # Display the figure
                     st.plotly_chart(fig, use_container_width=True)
 
-                # Connect to SQLite database (or create it if it doesn't exist)
                 conn = sqlite3.connect('remarks.db')
                 c = conn.cursor()
-                
-                # Check if the 'date' column exists, if not, add it
                 try:
                     c.execute('ALTER TABLE remarks ADD COLUMN date TEXT')
                 except sqlite3.OperationalError:
-                    # The column already exists
                     pass
-                
-                # Create table if it doesn't exist
+
                 c.execute('''
                     CREATE TABLE IF NOT EXISTS remarks (
                         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -430,7 +503,6 @@ if st.session_state.script_choice == "people":
                     )
                 ''')
 
-                # Function to add remark to the database
                 def add_remark(user, remark, date):
                     c.execute('INSERT INTO remarks (user, remark, date) VALUES (?, ?, ?)', (user, remark, date))
                     conn.commit()
@@ -442,8 +514,7 @@ if st.session_state.script_choice == "people":
                 def get_user_remarks(user, date):
                     c.execute('SELECT remark, date FROM remarks WHERE user = ? AND date = ?', (user, date))
                     return c.fetchall()  # Returns a list of tuples (remark, date)
-                    
-                # selected_user = st.selectbox("Select a user", people)
+
                 date_str = selected_date.strftime("%Y-%m-%d")  # Convert the selected date to string
                 existing_remarks = get_user_remarks(people, date_str)
                 if existing_remarks:
@@ -460,8 +531,6 @@ if st.session_state.script_choice == "people":
                     else:
                         add_remark(people, remark_input, date_str)
                         st.success(f"Remark added for {people} on {date_str}!")
-
-                # Close the database connection when done
                 conn.close()
 
         except Exception as e:
