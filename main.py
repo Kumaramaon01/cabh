@@ -474,7 +474,7 @@ if st.session_state.script_choice == "people":
                 # Connect to the database
                 conn = sqlite3.connect('remarks.db')
                 c = conn.cursor()
-
+                
                 # Create the remarks table if it doesn't exist
                 try:
                     c.execute('ALTER TABLE remarks ADD COLUMN date TEXT')
@@ -493,7 +493,7 @@ if st.session_state.script_choice == "people":
                 def add_remark(user, remark, date):
                     c.execute('INSERT INTO remarks (user, remark, date) VALUES (?, ?, ?)', (user, remark, date))
                     conn.commit()
-
+                
                 def update_remark(user, new_remark, date):
                     c.execute('UPDATE remarks SET remark = ?, date = ? WHERE user = ? AND date = ?', (new_remark, date, user, date))
                     conn.commit()
@@ -501,14 +501,14 @@ if st.session_state.script_choice == "people":
                 def get_user_remarks(user, date):
                     c.execute('SELECT remark, date FROM remarks WHERE user = ? AND date = ?', (user, date))
                     return c.fetchall()
-
+                
                 # Get the selected date from user input
-                # selected_date = datetime.now()  # Replace this with your actual date input
+                selected_date = datetime.now()  # Replace this with your actual date input
                 date_str = selected_date.strftime("%Y-%m-%d")
                 
                 # Get existing remarks
                 existing_remarks = get_user_remarks(people, date_str)
-
+                
                 # Loop through threshold lines and create plots
                 for threshold, name, fig in threshold_lines:
                     fig.add_trace(go.Scatter(
@@ -516,9 +516,10 @@ if st.session_state.script_choice == "people":
                         mode="lines", line=dict(color="black", width=2, dash="dot"),
                         name=f"Threshold {name}"
                     ))
-
+                
+                # Create columns for figures and remarks
                 col1, col2 = st.columns([0.8, 0.2])  # 80% for figures, 20% for remarks
-
+                
                 for fig, title in zip([fig1, fig2, fig3, fig4, fig5, fig6], ['PM2.5', 'PM10', 'VOC', 'CO2', 'Temp', 'Humidity']):
                     with col1:
                         yaxis_title = (
@@ -536,7 +537,7 @@ if st.session_state.script_choice == "people":
                             xaxis=dict(domain=[0, 0.8])
                         )
                         st.plotly_chart(fig, use_container_width=True)
-    
+                    
                     with col2:
                         # Fetch and display the existing remark if available
                         existing_remarks = get_user_remarks(people, date_str, title)
@@ -556,7 +557,7 @@ if st.session_state.script_choice == "people":
                             else:
                                 add_remark(people, remark_input, date_str)
                                 st.success(f"Remark added for {title}!")
-
+                
                 # Close the database connection
                 conn.close()
                 #################################
