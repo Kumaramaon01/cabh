@@ -489,7 +489,7 @@ if st.session_state.script_choice == "people":
                         yaxis_title=yaxis_title,
                         legend=dict(orientation="h", yanchor="bottom", y=-0.5, xanchor="center", x=0.5),
                         hovermode='x unified',
-                        margin=dict(l=0, r=0, t=0, b=0),  # Set the outer margins
+                        # margin=dict(l=0, r=0, t=0, b=0),  # Set the outer margins
                         xaxis=dict(domain=[0, 0.8]) 
                     )
                     st.plotly_chart(fig, use_container_width=True)
