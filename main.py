@@ -480,7 +480,7 @@ if st.session_state.script_choice == "people":
                     yaxis_title = (
                         f'{title} Concentration (ppm)' if title == 'CO2' 
                         else f'{title} Temperature (°C)' if title == 'Temp' 
-                        else f'{title} Concentration (µg/m³)' if title == 'Humidity'
+                        else f'{title} Concentration (%)' if title == 'Humidity'
                         else f'{title} Concentration (µg/m³)'
                     )
                     fig.update_layout(
@@ -518,9 +518,9 @@ if st.session_state.script_choice == "people":
 
                 def get_user_remarks(user, date):
                     c.execute('SELECT remark, date FROM remarks WHERE user = ? AND date = ?', (user, date))
-                    return c.fetchall()  # Returns a list of tuples (remark, date)
-
-                date_str = selected_date.strftime("%Y-%m-%d")  # Convert the selected date to string
+                    return c.fetchall()  
+                    
+                date_str = selected_date.strftime("%Y-%m-%d") 
                 existing_remarks = get_user_remarks(people, date_str)
                 if existing_remarks:
                     st.write(f"Existing remarks for {people} on {date_str}:")
@@ -528,7 +528,9 @@ if st.session_state.script_choice == "people":
                         st.write(f"- {remark} (Date: {date})")
                 else:
                     st.write(f"No remarks found for {people} on {date_str}. You can add a new one.")
-                remark_input = st.text_area("Enter your remark", value="" if not existing_remarks else existing_remarks[-1][0])
+                    
+                with st.expander("Add or View Remark"):
+                    remark_input = st.text_area("Enter your remark", value="" if not existing_remarks else existing_remarks[-1][0])
                 if st.button("Save Remark"):
                     if existing_remarks:
                         update_remark(people, remark_input, date_str)
@@ -537,7 +539,6 @@ if st.session_state.script_choice == "people":
                         add_remark(people, remark_input, date_str)
                         st.success(f"Remark added for {people} on {date_str}!")
                 conn.close()
-
         except Exception as e:
             st.info(f"🚨 Please upload right file for choosen Time Interval!")
 
