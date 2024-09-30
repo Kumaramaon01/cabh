@@ -469,31 +469,6 @@ if st.session_state.script_choice == "people":
                     fig6.add_trace(go.Scatter(x=gurneet_prabhash_temp.index, y=gurneet_prabhash_hum, mode='lines', name='LR1', line=dict(color='blue')))
             
                 threshold_lines = [(25, 'PM2.5', fig1), (50, 'PM10', fig2), (500, 'VOC', fig3), (1000, 'CO2', fig4), (24, 'Temp', fig5), (60, 'Humidity', fig6)]
-                for threshold, name, fig in threshold_lines:
-                    fig.add_trace(go.Scatter(
-                        x=[start_time, end_time], y=[threshold, threshold],
-                        mode="lines", line=dict(color="black", width=2, dash="dot"),
-                        name=f"Threshold {name}"
-                    ))
-            
-                for fig, title in zip([fig1, fig2, fig3, fig4, fig5, fig6], ['PM2.5', 'PM10', 'VOC', 'CO2', 'Temp', 'Humidity']):
-                    yaxis_title = (
-                        f'{title} Concentration (ppm)' if title == 'CO2' 
-                        else f'{title} Temperature (°C)' if title == 'Temp' 
-                        else f'{title} Concentration (%)' if title == 'Humidity'
-                        else f'{title} Concentration (µg/m³)'
-                    )
-                    fig.update_layout(
-                        title=f'🔴 {title} Levels in Various Locations',
-                        xaxis_title='Date & Time',
-                        yaxis_title=yaxis_title,
-                        legend=dict(orientation="h", yanchor="bottom", y=-0.5, xanchor="center", x=0.5),
-                        hovermode='x unified',
-                        # margin=dict(l=0, r=0, t=0, b=0),  # Set the outer margins
-                        xaxis=dict(domain=[0, 0.8]) 
-                    )
-                    st.plotly_chart(fig, use_container_width=True)
-
                 conn = sqlite3.connect('remarks.db')
                 c = conn.cursor()
                 try:
@@ -509,7 +484,6 @@ if st.session_state.script_choice == "people":
                         date TEXT
                     )
                 ''')
-
                 def add_remark(user, remark, date):
                     c.execute('INSERT INTO remarks (user, remark, date) VALUES (?, ?, ?)', (user, remark, date))
                     conn.commit()
@@ -524,23 +498,75 @@ if st.session_state.script_choice == "people":
                     
                 date_str = selected_date.strftime("%Y-%m-%d") 
                 existing_remarks = get_user_remarks(people, date_str)
-                if existing_remarks:
-                    st.write(f"Existing remarks for {people} on {date_str}:")
-                    for remark, date in existing_remarks:
-                        st.write(f"- {remark}") # (Date: {date})
-                else:
-                    st.write(f"No remarks found for {people} on {date_str}. You can add a new one.")
-                    
-                with st.expander("Add or View Remark"):
-                    remark_input = st.text_area("Enter your remark", value="" if not existing_remarks else existing_remarks[-1][0])
-                if st.button("Save Remark"):
-                    if existing_remarks:
-                        update_remark(people, remark_input, date_str)
-                        st.success(f"Remark updated for {people} on {date_str}!")
-                    else:
-                        add_remark(people, remark_input, date_str)
-                        st.success(f"Remark added for {people} on {date_str}!")
+                with col1:
+                    for threshold, name, fig in threshold_lines:
+                        fig.add_trace(go.Scatter(
+                            x=[start_time, end_time], y=[threshold, threshold],
+                            mode="lines", line=dict(color="black", width=2, dash="dot"),
+                            name=f"Threshold {name}"
+                        ))
+                
+                    for fig, title in zip([fig1, fig2, fig3, fig4, fig5, fig6], ['PM2.5', 'PM10', 'VOC', 'CO2', 'Temp', 'Humidity']):
+                        yaxis_title = (
+                            f'{title} Concentration (ppm)' if title == 'CO2' 
+                            else f'{title} Temperature (°C)' if title == 'Temp' 
+                            else f'{title} Concentration (%)' if title == 'Humidity'
+                            else f'{title} Concentration (µg/m³)'
+                        )
+                        fig.update_layout(
+                            title=f'🔴 {title} Levels in Various Locations',
+                            xaxis_title='Date & Time',
+                            yaxis_title=yaxis_title,
+                            legend=dict(orientation="h", yanchor="bottom", y=-0.5, xanchor="center", x=0.5),
+                            hovermode='x unified',
+                            xaxis=dict(domain=[0, 0.8]) 
+                        )
+                        st.plotly_chart(fig, use_container_width=True)
+
+                # Remarks Section for each figure in the right column
+                with col2:
+                    for title in ['PM2.5', 'PM10', 'VOC', 'CO2', 'Temp', 'Humidity']:
+                        st.markdown(f"### {title} Remark")
+                
+                        # Fetch and display the existing remark if available
+                        existing_remarks = get_user_remarks(people, date_str, title)
+                        if existing_remarks:
+                            st.write(f"Existing remark for {title}:")
+                            st.write(existing_remarks[-1][0])
+                        else:
+                            st.write(f"No remarks found for {title}. You can add a new one.")
+                
+                        # Input field for adding or updating the remark
+                        remark_input = st.text_area(f"Enter your remark for {title}", value="" if not existing_remarks else existing_remarks[-1][0], key=title)
+
+                        if st.button(f"Save Remark for {title}", key=f"save_{title}"):
+                            if existing_remarks:
+                                update_remark(people, remark_input, date_str, title)
+                                st.success(f"Remark updated for {title}!")
+                            else:
+                                add_remark(people, remark_input, date_str, title)
+                                st.success(f"Remark added for {title}!")
+                
+                # Close the database connection
                 conn.close()
+ 
+                # if existing_remarks:
+                #     st.write(f"Existing remarks for {people} on {date_str}:")
+                #     for remark, date in existing_remarks:
+                #         st.write(f"- {remark}") # (Date: {date})
+                # else:
+                #     st.write(f"No remarks found for {people} on {date_str}. You can add a new one.")
+                    
+                # with st.expander("Add or View Remark"):
+                #     remark_input = st.text_area("Enter your remark", value="" if not existing_remarks else existing_remarks[-1][0])
+                # if st.button("Save Remark"):
+                #     if existing_remarks:
+                #         update_remark(people, remark_input, date_str)
+                #         st.success(f"Remark updated for {people} on {date_str}!")
+                #     else:
+                #         add_remark(people, remark_input, date_str)
+                #         st.success(f"Remark added for {people}!")
+                # conn.close()
         except Exception as e:
             st.info(f"🚨 Please upload right file for choosen Time Interval!")
 
