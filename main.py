@@ -481,7 +481,7 @@ if st.session_state.script_choice == "people":
                         f'{title} Concentration (ppm)' if title == 'CO2' 
                         else f'{title} Temperature (°C)' if title == 'Temp' 
                         else f'{title} Concentration (µg/m³)' if title == 'Humidity'
-                        else f'{title}' Concentration (µg/m³)' 
+                        else f'{title} Concentration (µg/m³)'
                     )
                     fig.update_layout(
                         title=f'🔴 {title} Levels in Various Locations',
