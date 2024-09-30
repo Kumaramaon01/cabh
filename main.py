@@ -495,7 +495,7 @@ if st.session_state.script_choice == "people":
                 def get_user_remarks(user, date):
                     c.execute('SELECT remark, date FROM remarks WHERE user = ? AND date = ?', (user, date))
                     return c.fetchall()  
-                    
+                col1, col2 = st.columns([4, 1])  # 80% for figures, 20% for remarks
                 date_str = selected_date.strftime("%Y-%m-%d") 
                 existing_remarks = get_user_remarks(people, date_str)
                 with col1:
