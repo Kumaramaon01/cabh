@@ -547,27 +547,6 @@ if st.session_state.script_choice == "people":
             
                 # Close the database connection
                 conn.close()
-                
-                # for fig, title in zip([fig1, fig2, fig3, fig4, fig5, fig6], ['PM2.5', 'PM10', 'VOC', 'CO2', 'Temp', 'Humidity']):
-                #     yaxis_title = (
-                #         f'{title} Concentration (ppm)' if title == 'CO2' 
-                #         else f'{title} Temperature (°C)' if title == 'Temp' 
-                #         else f'{title} Concentration (%)' if title == 'Humidity'
-                #         else f'{title} Concentration (µg/m³)'
-                #     )
-                #     fig.update_layout(
-                #         title=f'🔴 {title} Levels in Various Locations',
-                #         xaxis_title='Date & Time',
-                #         yaxis_title=yaxis_title,
-                #         legend=dict(orientation="h", yanchor="bottom", y=-0.5, xanchor="center", x=0.5),
-                #         hovermode='x unified',
-                #         xaxis=dict(domain=[0, 0.8]) 
-                #     )
-                #     st.plotly_chart(fig, use_container_width=True)
-                #     st.markdown(f"### {title} Remark")
-            
-                #     # Fetch and display the existing remark if available
-                #     existing_remarks = get_user_remarks(people, date_str, title)
         
         except Exception as e:
             st.info(f"🚨 Please upload right file for choosen Time Interval!")
