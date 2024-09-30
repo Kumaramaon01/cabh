@@ -443,22 +443,23 @@ if st.session_state.script_choice == "people":
                     c.execute('SELECT remark, date FROM remarks WHERE user = ? AND date = ?', (user, date))
                     return c.fetchall()  # Returns a list of tuples (remark, date)
                     
+                # selected_user = st.selectbox("Select a user", people)
                 date_str = selected_date.strftime("%Y-%m-%d")  # Convert the selected date to string
                 existing_remarks = get_user_remarks(people, date_str)
                 if existing_remarks:
-                    st.write(f"Existing remarks for {selected_user} on {date_str}:")
+                    st.write(f"Existing remarks for {people} on {date_str}:")
                     for remark, date in existing_remarks:
                         st.write(f"- {remark} (Date: {date})")
                 else:
-                    st.write(f"No remarks found for {selected_user} on {date_str}. You can add a new one.")
+                    st.write(f"No remarks found for {people} on {date_str}. You can add a new one.")
                 remark_input = st.text_area("Enter your remark", value="" if not existing_remarks else existing_remarks[-1][0])
                 if st.button("Save Remark"):
                     if existing_remarks:
-                        update_remark(selected_user, remark_input, date_str)
-                        st.success(f"Remark updated for {selected_user} on {date_str}!")
+                        update_remark(people, remark_input, date_str)
+                        st.success(f"Remark updated for {people} on {date_str}!")
                     else:
-                        add_remark(selected_user, remark_input, date_str)
-                        st.success(f"Remark added for {selected_user} on {date_str}!")
+                        add_remark(people, remark_input, date_str)
+                        st.success(f"Remark added for {people} on {date_str}!")
 
                 # Close the database connection when done
                 conn.close()
