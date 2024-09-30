@@ -525,7 +525,7 @@ if st.session_state.script_choice == "people":
                 if existing_remarks:
                     st.write(f"Existing remarks for {people} on {date_str}:")
                     for remark, date in existing_remarks:
-                        st.write(f"- {remark} (Date: {date})")
+                        st.write(f"- {remark}") # (Date: {date})
                 else:
                     st.write(f"No remarks found for {people} on {date_str}. You can add a new one.")
                     
