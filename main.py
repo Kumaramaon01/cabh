@@ -409,6 +409,61 @@ if st.session_state.script_choice == "people":
                     # Display the figure
                     st.plotly_chart(fig, use_container_width=True)
 
+                # Connect to SQLite database (or create it if it doesn't exist)
+                conn = sqlite3.connect('remarks.db')
+                c = conn.cursor()
+                
+                # Check if the 'date' column exists, if not, add it
+                try:
+                    c.execute('ALTER TABLE remarks ADD COLUMN date TEXT')
+                except sqlite3.OperationalError:
+                    # The column already exists
+                    pass
+                
+                # Create table if it doesn't exist
+                c.execute('''
+                    CREATE TABLE IF NOT EXISTS remarks (
+                        id INTEGER PRIMARY KEY AUTOINCREMENT,
+                        user TEXT,
+                        remark TEXT,
+                        date TEXT
+                    )
+                ''')
+
+                # Function to add remark to the database
+                def add_remark(user, remark, date):
+                    c.execute('INSERT INTO remarks (user, remark, date) VALUES (?, ?, ?)', (user, remark, date))
+                    conn.commit()
+
+                def update_remark(user, new_remark, date):
+                    c.execute('UPDATE remarks SET remark = ?, date = ? WHERE user = ? AND date = ?', (new_remark, date, user, date))
+                    conn.commit()
+
+                def get_user_remarks(user, date):
+                    c.execute('SELECT remark, date FROM remarks WHERE user = ? AND date = ?', (user, date))
+                    return c.fetchall()  # Returns a list of tuples (remark, date)
+                    
+                selected_user = st.selectbox("Select a user", people)
+                date_str = selected_date.strftime("%Y-%m-%d")  # Convert the selected date to string
+                existing_remarks = get_user_remarks(selected_user, date_str)
+                if existing_remarks:
+                    st.write(f"Existing remarks for {selected_user} on {date_str}:")
+                    for remark, date in existing_remarks:
+                        st.write(f"- {remark} (Date: {date})")
+                else:
+                    st.write(f"No remarks found for {selected_user} on {date_str}. You can add a new one.")
+                remark_input = st.text_area("Enter your remark", value="" if not existing_remarks else existing_remarks[-1][0])
+                if st.button("Save Remark"):
+                    if existing_remarks:
+                        update_remark(selected_user, remark_input, date_str)
+                        st.success(f"Remark updated for {selected_user} on {date_str}!")
+                    else:
+                        add_remark(selected_user, remark_input, date_str)
+                        st.success(f"Remark added for {selected_user} on {date_str}!")
+
+                # Close the database connection when done
+                conn.close()
+
         except Exception as e:
             st.info(f"🚨 Please upload right file for choosen Time Interval!")
 
