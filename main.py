@@ -443,9 +443,8 @@ if st.session_state.script_choice == "people":
                     c.execute('SELECT remark, date FROM remarks WHERE user = ? AND date = ?', (user, date))
                     return c.fetchall()  # Returns a list of tuples (remark, date)
                     
-                selected_user = st.selectbox("Select a user", people)
                 date_str = selected_date.strftime("%Y-%m-%d")  # Convert the selected date to string
-                existing_remarks = get_user_remarks(selected_user, date_str)
+                existing_remarks = get_user_remarks(people, date_str)
                 if existing_remarks:
                     st.write(f"Existing remarks for {selected_user} on {date_str}:")
                     for remark, date in existing_remarks:
