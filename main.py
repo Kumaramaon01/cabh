@@ -107,7 +107,7 @@ if st.session_state.script_choice == "people":
         id2 = '1201240085'  # Piyush Living Room
     elif people == 'Sheetal':
         id1 = '1203240083'  # Sheetal Living Room
-        id2 = None          # Add more IDs if necessary
+        id2 = '1203240083'  # Add more IDs if necessary
     elif people == 'Lakshmi':
         id1 = '1201240072'  # Lakshmi Living Room
         id2 = '1201240077'  # Lakshmi Kitchen
@@ -134,13 +134,13 @@ if st.session_state.script_choice == "people":
         id2 = '1203240078'
     elif people == 'TT':
         id1 = '1201240073'
-        id2 = None
+        id2 = '1201240073'
     elif people == 'Nidhi': # Bedroom
         id1 = '1203240073'
-        id2 = None
+        id2 = '1203240073'
     elif people == 'Manpreet': # Drawing
         id1 = '1203240072'
-        id2 = None
+        id2 = '1203240072'
         
     # Convert Streamlit date input to string format for SQL query
     start_date_str = selected_date.strftime('%Y-%m-%d')  # Correct this to use selected_date
