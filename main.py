@@ -496,43 +496,57 @@ if st.session_state.script_choice == "people":
                     )
                     st.plotly_chart(fig, use_container_width=True)
     
-                # threshold_lines = [(25, 'PM2.5', fig1), (50, 'PM10', fig2), (500, 'VOC', fig3), (1000, 'CO2', fig4), (24, 'Temp', fig5), (60, 'Humidity', fig6)]
-                # conn = sqlite3.connect('remarks.db')
-                # c = conn.cursor()
-                # try:
-                #     c.execute('ALTER TABLE remarks ADD COLUMN date TEXT')
-                # except sqlite3.OperationalError:
-                #     pass
+                threshold_lines = [(25, 'PM2.5', fig1), (50, 'PM10', fig2), (500, 'VOC', fig3), (1000, 'CO2', fig4), (24, 'Temp', fig5), (60, 'Humidity', fig6)]
+                conn = sqlite3.connect('remarks.db')
+                c = conn.cursor()
+                try:
+                    c.execute('ALTER TABLE remarks ADD COLUMN date TEXT')
+                except sqlite3.OperationalError:
+                    pass
 
-                # c.execute('''
-                #     CREATE TABLE IF NOT EXISTS remarks (
-                #         id INTEGER PRIMARY KEY AUTOINCREMENT,
-                #         user TEXT,
-                #         remark TEXT,
-                #         date TEXT
-                #     )
-                # ''')
-                # def add_remark(user, remark, date):
-                #     c.execute('INSERT INTO remarks (user, remark, date) VALUES (?, ?, ?)', (user, remark, date))
-                #     conn.commit()
+                c.execute('''
+                    CREATE TABLE IF NOT EXISTS remarks (
+                        id INTEGER PRIMARY KEY AUTOINCREMENT,
+                        user TEXT,
+                        remark TEXT,
+                        date TEXT
+                    )
+                ''')
+                def add_remark(user, remark, date):
+                    c.execute('INSERT INTO remarks (user, remark, date) VALUES (?, ?, ?)', (user, remark, date))
+                    conn.commit()
 
-                # def update_remark(user, new_remark, date):
-                #     c.execute('UPDATE remarks SET remark = ?, date = ? WHERE user = ? AND date = ?', (new_remark, date, user, date))
-                #     conn.commit()
+                def update_remark(user, new_remark, date):
+                    c.execute('UPDATE remarks SET remark = ?, date = ? WHERE user = ? AND date = ?', (new_remark, date, user, date))
+                    conn.commit()
 
-                # def get_user_remarks(user, date):
-                #     c.execute('SELECT remark, date FROM remarks WHERE user = ? AND date = ?', (user, date))
-                #     return c.fetchall()  
+                def get_user_remarks(user, date):
+                    c.execute('SELECT remark, date FROM remarks WHERE user = ? AND date = ?', (user, date))
+                    return c.fetchall()  
 
-                # date_str = selected_date.strftime("%Y-%m-%d") 
-                # existing_remarks = get_user_remarks(people, date_str)
-                # # with col1:/
-                # for threshold, name, fig in threshold_lines:
-                #     fig.add_trace(go.Scatter(
-                #         x=[start_time, end_time], y=[threshold, threshold],
-                #         mode="lines", line=dict(color="black", width=2, dash="dot"),
-                #         name=f"Threshold {name}"
-                #     ))
+                date_str = selected_date.strftime("%Y-%m-%d") 
+                existing_remarks = get_user_remarks(people, date_str)
+                if existing_remarks:
+                    st.write(f"Existing remarks for {people} on {date_str}:")
+                    for remark, date in existing_remarks:
+                        st.write(f"- {remark}")
+                else:
+                    st.write(f"No remarks found for {people} on {date_str}. You can add a new one.")
+            
+                # Expander for adding or updating remarks
+                with st.expander("Add or View Remark"):
+                    remark_input = st.text_area("Enter your remark", value="" if not existing_remarks else existing_remarks[-1][0])
+                    
+                    if st.button("Save Remark"):
+                        if existing_remarks:
+                            update_remark(people, remark_input, date_str)
+                            st.success(f"Remark updated for {people} on {date_str}!")
+                        else:
+                            add_remark(people, remark_input, date_str)
+                            st.success(f"Remark added for {people} on {date_str}!")
+            
+                # Close the database connection
+                conn.close()
                 
                 # for fig, title in zip([fig1, fig2, fig3, fig4, fig5, fig6], ['PM2.5', 'PM10', 'VOC', 'CO2', 'Temp', 'Humidity']):
                 #     yaxis_title = (
