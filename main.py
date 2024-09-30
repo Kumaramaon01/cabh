@@ -18,6 +18,7 @@ import base64
 from PIL import Image
 import io
 from plotly.subplots import make_subplots
+import sqlite3
 
 # Set page layout to wide and title
 st.set_page_config(
