@@ -536,7 +536,7 @@ if st.session_state.script_choice == "people":
                 # Expander for adding or updating remarks
                 with st.expander("Add or View Remark"):
                     # Define the placeholder text
-                    placeholder_text = "PM2.5 -\npm10 -\nVOC -\nCO2 -\nTemperature -\nHumidity -"
+                    placeholder_text = "PM2.5 -\n\npm10 -\n\nVOC -\n\nCO2 -\n\nTemperature -\n\nHumidity -"
                     remark_input = st.text_area(
                         "Enter your remark",
                         value=existing_remarks[-1][0] if existing_remarks else placeholder_text,
