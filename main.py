@@ -249,18 +249,23 @@ if st.session_state.script_choice == "people":
 
                     fig2.add_trace(go.Scatter(x=gurneet_mannat_pm10.index, y=gurneet_mannat_pm10, mode='lines', name='Mannat Room', line=dict(color='blue')))
                     fig2.add_trace(go.Scatter(x=gurneet_prabhash_pm10.index, y=gurneet_prabhash_pm10, mode='lines', name='Prabhash Room PM10', line=dict(color='violet')))
+                    fig2.add_trace(go.Scatter(x=gurneet_outdoor_pm10.index, y=gurneet_outdoor_pm10, mode='lines', name='Outdoor', line=dict(color='green')))
 
                     fig3.add_trace(go.Scatter(x=gurneet_mannat_voc.index, y=gurneet_mannat_voc, mode='lines', name='Mannat Room', line=dict(color='blue')))
                     fig3.add_trace(go.Scatter(x=gurneet_prabhash_voc.index, y=gurneet_prabhash_voc, mode='lines', name='Prabhash Room', line=dict(color='violet')))
+                    fig3.add_trace(go.Scatter(x=gurneet_outdoor_voc.index, y=gurneet_outdoor_voc, mode='lines', name='Outdoor', line=dict(color='green')))
 
                     fig4.add_trace(go.Scatter(x=gurneet_mannat_co2.index, y=gurneet_mannat_co2, mode='lines', name='Mannat Room', line=dict(color='blue')))
                     fig4.add_trace(go.Scatter(x=gurneet_prabhash_co2.index, y=gurneet_prabhash_co2, mode='lines', name='Prabhash Room', line=dict(color='violet')))
+                    fig4.add_trace(go.Scatter(x=gurneet_outdoor_co2.index, y=gurneet_outdoor_co2, mode='lines', name='Outdoor', line=dict(color='green')))
 
                     fig5.add_trace(go.Scatter(x=gurneet_mannat_temp.index, y=gurneet_mannat_temp, mode='lines', name='Mannat Room', line=dict(color='blue')))
                     fig5.add_trace(go.Scatter(x=gurneet_prabhash_temp.index, y=gurneet_prabhash_temp, mode='lines', name='Prabhash Room', line=dict(color='violet')))
+                    fig5.add_trace(go.Scatter(x=gurneet_outdoor_temp.index, y=gurneet_outdoor_temp, mode='lines', name='Outdoor', line=dict(color='green')))
 
                     fig6.add_trace(go.Scatter(x=gurneet_mannat_temp.index, y=gurneet_mannat_hum, mode='lines', name='Mannat Room', line=dict(color='blue')))
                     fig6.add_trace(go.Scatter(x=gurneet_prabhash_temp.index, y=gurneet_prabhash_hum, mode='lines', name='Prabhash Room', line=dict(color='violet')))
+                    fig6.add_trace(go.Scatter(x=gurneet_outdoor_temp.index, y=gurneet_outdoor_hum, mode='lines', name='outdoor', line=dict(color='green')))
                 
                 elif people == "Piyush":
                     fig1.add_trace(go.Scatter(x=gurneet_mannat_pm25.index, y=gurneet_mannat_pm25, mode='lines', name='Bedroom', line=dict(color='blue')))
