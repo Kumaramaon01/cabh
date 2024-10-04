@@ -103,6 +103,7 @@ if st.session_state.script_choice == "people":
     if people == 'Gurneet':
         id1 = '1203240077'  # Gurneet Mannat Room
         id2 = '1203240076'  # Gurneet Prabhash Room
+        id3 = 'DELDPCC014'
     elif people == 'Piyush':
         id1 = '1201240079'  # Piyush Bedroom
         id2 = '1201240085'  # Piyush Living Room
@@ -153,8 +154,10 @@ if st.session_state.script_choice == "people":
     # Determine the table name based on the selected interval for Indoor data
     if time_interval == '1min':
         table_name = "reading_db"
+        table_name_O = "cpcb_data"
     elif time_interval == '15min':
         table_name = "reading_15min"
+        table_name_O = "cpcb_data"
     elif time_interval == 'hour':
         table_name = "reading_hour"
 
@@ -164,8 +167,15 @@ if st.session_state.script_choice == "people":
         WHERE DATE(datetime) BETWEEN '{start_date_str}' AND '{end_date_str}';
     """
 
+    # SQL query to fetch indoor data for the specified deviceID and date range
+    query_outdoor = f"""  
+        SELECT * FROM {table_name_O}
+        WHERE DATE(datetime) BETWEEN '{start_date_str}' AND '{end_date_str}';
+    """
+
     # Fetch data from the database into DataFrames
     df = pd.read_sql(query_indoor, engine)
+    df1 = pd.read_sql(query_outdoor, engine)
     # connection.close()
     engine.dispose()
 
@@ -177,22 +187,27 @@ if st.session_state.script_choice == "people":
             if time_interval == "1min" or time_interval == "15min" or time_interval == "hour":
                 # Ensure 'deviceID' column is treated as string and remove any leading/trailing spaces
                 df['deviceID'] = df['deviceID'].astype(str).str.strip()
+                df1['deviceID'] = df1['deviceID'].astype(str).str.strip()
                 
                 # Defining different rooms' data
                 Gurneet_Mannat_Room = df[df['deviceID'] == id1].copy()
                 Gurneet_Prabhash_Room = df[df['deviceID'] == id2].copy() if id2 else None
+                Gurneet_Outdoor = df1[df1['deviceID'] == id3].copy() if id3 else None
 
                 # Correcting datetime formats
                 Gurneet_Mannat_Room['datetime'] = pd.to_datetime(Gurneet_Mannat_Room['datetime'], format='%Y-%m-%d %H:%M')
                 Gurneet_Prabhash_Room['datetime'] = pd.to_datetime(Gurneet_Prabhash_Room['datetime'], format='%Y-%m-%d %H:%M')
+                Gurneet_Outdoor['datetime'] = pd.to_datetime(Gurneet_Outdoor['datetime'], format='%Y-%m-%d %H:%M')
 
                 # Set 'datetime' as the DataFrame index
                 Gurneet_Mannat_Room.set_index('datetime', inplace=True)
                 Gurneet_Prabhash_Room.set_index('datetime', inplace=True)
+                Gurneet_Outdoor.set_index('datetime', inplace=True)
 
                 # Sort the index for each dataframe
                 Gurneet_Mannat_Room = Gurneet_Mannat_Room.sort_index()
                 Gurneet_Prabhash_Room = Gurneet_Prabhash_Room.sort_index()
+                Gurneet_Outdoor = Gurneet_Outdoor.sort_index()
 
                 # Convert selected date to datetime and define the time range for filtering
                 start_time = pd.to_datetime(selected_date).strftime('%Y-%m-%d') + ' 00:00:00'
@@ -201,21 +216,27 @@ if st.session_state.script_choice == "people":
                 # Filter each dataframe to get the values for the 24-hour period
                 gurneet_mannat_pm25 = Gurneet_Mannat_Room.loc[start_time:end_time, 'pm25']
                 gurneet_prabhash_pm25 = Gurneet_Prabhash_Room.loc[start_time:end_time, 'pm25']
+                gurneet_outdoor_pm25 = Gurneet_Outdoor.loc[start_time:end_time, 'pm25']
 
                 gurneet_mannat_pm10 = Gurneet_Mannat_Room.loc[start_time:end_time, 'pm10']
                 gurneet_prabhash_pm10 = Gurneet_Prabhash_Room.loc[start_time:end_time, 'pm10']
+                gurneet_outdoor_pm10 = Gurneet_Outdoor.loc[start_time:end_time, 'pm10']
 
                 gurneet_mannat_voc = Gurneet_Mannat_Room.loc[start_time:end_time, 'voc']
                 gurneet_prabhash_voc = Gurneet_Prabhash_Room.loc[start_time:end_time, 'voc']
+                gurneet_outdoor_voc = Gurneet_Outdoor.loc[start_time:end_time, 'voc']
 
                 gurneet_mannat_co2 = Gurneet_Mannat_Room.loc[start_time:end_time, 'co2']
                 gurneet_prabhash_co2 = Gurneet_Prabhash_Room.loc[start_time:end_time, 'co2']
+                gurneet_outdoor_co2 = Gurneet_Outdoor.loc[start_time:end_time, 'co2']
 
                 gurneet_mannat_temp = Gurneet_Mannat_Room.loc[start_time:end_time, 'temp']
                 gurneet_prabhash_temp = Gurneet_Prabhash_Room.loc[start_time:end_time, 'temp']
+                gurneet_outdoor_temp = Gurneet_Outdoor.loc[start_time:end_time, 'temp']
 
                 gurneet_mannat_hum = Gurneet_Mannat_Room.loc[start_time:end_time, 'humidity']
                 gurneet_prabhash_hum = Gurneet_Prabhash_Room.loc[start_time:end_time, 'humidity']
+                gurneet_outdoor_hum = Gurneet_Outdoor.loc[start_time:end_time, 'humidity']
 
                 # Create figures
                 fig1, fig2, fig3, fig4, fig5, fig6 = go.Figure(), go.Figure(), go.Figure(), go.Figure(), go.Figure(), go.Figure()
@@ -224,6 +245,7 @@ if st.session_state.script_choice == "people":
                 if people == 'Gurneet':
                     fig1.add_trace(go.Scatter(x=gurneet_mannat_pm25.index, y=gurneet_mannat_pm25, mode='lines', name='Mannat Room', line=dict(color='blue')))
                     fig1.add_trace(go.Scatter(x=gurneet_prabhash_pm25.index, y=gurneet_prabhash_pm25, mode='lines', name='Prabhash Room', line=dict(color='violet')))
+                    fig1.add_trace(go.Scatter(x=gurneet_outdoor_pm25.index, y=gurneet_outdoor_pm25, mode='lines', name='Outdoor', line=dict(color='green')))
 
                     fig2.add_trace(go.Scatter(x=gurneet_mannat_pm10.index, y=gurneet_mannat_pm10, mode='lines', name='Mannat Room', line=dict(color='blue')))
                     fig2.add_trace(go.Scatter(x=gurneet_prabhash_pm10.index, y=gurneet_prabhash_pm10, mode='lines', name='Prabhash Room PM10', line=dict(color='violet')))
