@@ -567,6 +567,7 @@ if st.session_state.script_choice == "people":
                     remark_input = st.text_area(
                         "Enter your remark",
                         value=existing_remarks[-1][0] if existing_remarks else placeholder_text,
+                        height = 300
                     )
                 
                     # Save Remark button
@@ -686,14 +687,6 @@ if st.session_state.script_choice == "visual":
         uploaded_file1 = st.file_uploader("Upload Indoor File", type=["csv"])
     with col2:
         uploaded_file2 = st.file_uploader("Upload Outdoor File", type=["csv"])
-
-        
-    # reading_db = pd.read_csv("database/Sep_1min.csv")
-    # cpcb_data = pd.read_csv("database/cpcb_data.csv")
-    # reading_15min = pd.read_csv("database/reading_15min.csv")
-    # cpcb_data = pd.read_csv("database/cpcb_data.csv")
-    # reading_hour = pd.read_csv("database/reading_hr.csv")
-    # cpcb_hour = pd.read_csv("database/cpcb_hour.csv")
 
     # Convert Streamlit date input to string format for SQL query
     start_date_str = start_date.strftime('%Y-%m-%d')
