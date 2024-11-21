@@ -107,42 +107,55 @@ if st.session_state.script_choice == "people":
     elif people == 'Piyush':
         id1 = '1201240079'  # Piyush Bedroom
         id2 = '1201240085'  # Piyush Living Room
+        id3 = 'DELDPCC014'
     elif people == 'Sheetal':
         id1 = '1203240083'  # Sheetal Living Room
         id2 = '1203240083'  # Add more IDs if necessary
+        id3 = 'DELDPCC014'
     elif people == 'Lakshmi':
         id1 = '1201240072'  # Lakshmi Living Room
         id2 = '1201240077'  # Lakshmi Kitchen
+        id3 = 'DELDPCC014'
     elif people == 'Mariyam':
         id1 = '1202240027'  # Mariyam Bedroom 1
         id2 = '1202240011'  # Mariyam Living Room
+        id3 = 'DELDPCC014'
     elif people == 'Abhishek':
         id1 = '1201240074'  # Abhishek Living Room
         id2 = '1203240080'  # Abhishek Bedroom
+        id3 = 'DELDPCC014'
     elif people == 'Surender':
         id1 = '1212230160'  # Surender Bedroom
         id2 = '1201240076'  # Surender Living Room
+        id3 = 'DELDPCC014'
     elif people == 'Robin':
         id1 = '1202240009'  # Robin Bedroom
         id2 = '1202240008'  # Robin Living Room
+        id3 = 'DELDPCC014'
     elif people == 'Hines':
         id1 = '1201240075'  # Hines Office 1
         id2 = '1201240078'  # Hines Office 2
+        id3 = 'DELDPCC014'
     elif people == 'EDS D Block':
         id1 = '1202240025'
         id2 = '1202240026'
+        id3 = 'DELDPCC014'
     elif people == 'Hisham':
         id1 = '1203240076'
         id2 = '1203240078'
+        id3 = 'DELDPCC014'
     elif people == 'TT':
         id1 = '1201240073'
         id2 = '1201240073'
+        id3 = 'DELDPCC014'
     elif people == 'Nidhi': # Bedroom
         id1 = '1203240073'
         id2 = '1203240073'
+        id3 = 'DELDPCC014'
     elif people == 'Manpreet': # Drawing
         id1 = '1203240072'
         id2 = '1203240072'
+        id3 = 'DELDPCC014'
         
     # Convert Streamlit date input to string format for SQL query
     start_date_str = selected_date.strftime('%Y-%m-%d')  # Correct this to use selected_date
@@ -238,11 +251,9 @@ if st.session_state.script_choice == "people":
                 gurneet_prabhash_hum = Gurneet_Prabhash_Room.loc[start_time:end_time, 'humidity']
                 gurneet_outdoor_hum = Gurneet_Outdoor.loc[start_time:end_time, 'humidity']
 
-                # Create figures
                 fig1, fig2, fig3, fig4, fig5, fig6 = go.Figure(), go.Figure(), go.Figure(), go.Figure(), go.Figure(), go.Figure()
 
-                # Add traces for each dataframe with specified colors
-                if people == 'Piyush':
+                if people == 'Gurneet':
                     fig1.add_trace(go.Scatter(x=gurneet_mannat_pm25.index, y=gurneet_mannat_pm25, mode='lines', name='Mannat Room', line=dict(color='blue')))
                     fig1.add_trace(go.Scatter(x=gurneet_prabhash_pm25.index, y=gurneet_prabhash_pm25, mode='lines', name='Prabhash Room', line=dict(color='violet')))
                     fig1.add_trace(go.Scatter(x=gurneet_outdoor_pm25.index, y=gurneet_outdoor_pm25, mode='lines', name='Outdoor', line=dict(color='green')))
@@ -267,7 +278,7 @@ if st.session_state.script_choice == "people":
                     fig6.add_trace(go.Scatter(x=gurneet_prabhash_temp.index, y=gurneet_prabhash_hum, mode='lines', name='Prabhash Room', line=dict(color='violet')))
                     fig6.add_trace(go.Scatter(x=gurneet_outdoor_temp.index, y=gurneet_outdoor_hum, mode='lines', name='outdoor', line=dict(color='green')))
                 
-                elif people == "Gurneet":
+                elif people == "Piyush":
                     fig1.add_trace(go.Scatter(x=gurneet_mannat_pm25.index, y=gurneet_mannat_pm25, mode='lines', name='Bedroom', line=dict(color='blue')))
                     fig1.add_trace(go.Scatter(x=gurneet_prabhash_pm25.index, y=gurneet_prabhash_pm25, mode='lines', name='Living', line=dict(color='violet')))
 
