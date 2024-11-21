@@ -242,7 +242,7 @@ if st.session_state.script_choice == "people":
                 fig1, fig2, fig3, fig4, fig5, fig6 = go.Figure(), go.Figure(), go.Figure(), go.Figure(), go.Figure(), go.Figure()
 
                 # Add traces for each dataframe with specified colors
-                if people == 'Gurneet':
+                if people == 'Piyush':
                     fig1.add_trace(go.Scatter(x=gurneet_mannat_pm25.index, y=gurneet_mannat_pm25, mode='lines', name='Mannat Room', line=dict(color='blue')))
                     fig1.add_trace(go.Scatter(x=gurneet_prabhash_pm25.index, y=gurneet_prabhash_pm25, mode='lines', name='Prabhash Room', line=dict(color='violet')))
                     fig1.add_trace(go.Scatter(x=gurneet_outdoor_pm25.index, y=gurneet_outdoor_pm25, mode='lines', name='Outdoor', line=dict(color='green')))
@@ -267,7 +267,7 @@ if st.session_state.script_choice == "people":
                     fig6.add_trace(go.Scatter(x=gurneet_prabhash_temp.index, y=gurneet_prabhash_hum, mode='lines', name='Prabhash Room', line=dict(color='violet')))
                     fig6.add_trace(go.Scatter(x=gurneet_outdoor_temp.index, y=gurneet_outdoor_hum, mode='lines', name='outdoor', line=dict(color='green')))
                 
-                elif people == "Piyush":
+                elif people == "Gurneet":
                     fig1.add_trace(go.Scatter(x=gurneet_mannat_pm25.index, y=gurneet_mannat_pm25, mode='lines', name='Bedroom', line=dict(color='blue')))
                     fig1.add_trace(go.Scatter(x=gurneet_prabhash_pm25.index, y=gurneet_prabhash_pm25, mode='lines', name='Living', line=dict(color='violet')))
 
