@@ -1,0 +1,33 @@
+deviceID,deployementID,typology,address,data_points_24h,data_percentage,last_timestamp
+1201240075,OFGSI-005,Office,"Hines Office, 12th Floor, One Horizon Centre, Sec-43, Gurugram",141,9.79,2025-03-28 10:53:31
+1201240078,OFGSI-006,Office,"Hines Office, 12th Floor, One Horizon Centre, Sec-43, Gurugram",846,58.75,2025-03-28 10:58:38
+1202240026,OFRK-11,Office,"D-1/25 Vasant Vihar , New Delhi-110057(EDS Delhi)",1417,98.4,2025-03-28 10:58:34
+1202240025,OFRK-12,Office,"D-1/25 Vasant Vihar , New Delhi-110057(EDS Delhi)",1422,98.75,2025-03-28 10:58:42
+1203240081,OFRK-26,Office,"26A Poorvi Marg, Vasant Vihar , New Delhi-110057
+(EDS, E-Block, Delhi)",1292,89.72,2025-03-28 10:12:05
+1202240011,RECR-15,Apartment,"D-188, Abul Fazal Enclave-I, Jamia Nagar, New Delhi-110025",1427,99.1,2025-03-28 10:58:16
+1202240027,RECR-16,Apartment,"D-188, Abul Fazal Enclave-I, Jamia Nagar, New Delhi-110025",1423,98.82,2025-03-28 10:58:02
+1203240076,RECR-23,Midrise Apartment (G+5),"D 184 ABUL FAZAL ENCLAVE, JAMIA NAGAR, OKHLA, NEW DELHI 25",1421,98.68,2025-03-28 10:58:23
+1203240078,RECR-24,Midrise Apartment (G+5),"D 184 ABUL FAZAL ENCLAVE, JAMIA NAGAR, OKHLA, NEW DELHI 25",1422,98.75,2025-03-28 10:58:17
+1203240075,RECR-31,Residential,"A 48/B, Third Floor, Abul Fazal Enclave Part II, New Delhi",1,0.07,2025-03-27 23:46:01
+1201240077,RED8-003,Residential,"448, Sector-9, Pocket-1 DDA Flats Dwarka , New Delhi-110075",1255,87.15,2025-03-28 10:57:21
+1201240072,RED8-004,Residential,"448, Sector-9, Pocket-1 DDA Flats Dwarka , New Delhi-110075",1238,85.97,2025-03-28 10:57:35
+1203240079,REPG - 29,"Residential, Multi-family","C-403, Prince Apartments, Plot 54, I.P. Extension, Patparganj, Delhi - 110092",676,46.94,2025-03-28 10:57:50
+1201240079,REPG-001,Residential,"B-3/527, Ekta Gardens Apts, Patparganj, Delhi - 110092",1404,97.5,2025-03-28 10:57:59
+1201240085,REPG-002,Residential,"B-3/527, Ekta Gardens Apts, Patparganj, Delhi - 110092",1412,98.06,2025-03-28 10:58:08
+1203240083,RERK-032,Residential,"Flat No. 25, Tower E2, Sector E1, Vasant Kunj, New Delhi",1425,98.96,2025-03-28 10:57:53
+1203240073,RERK-27,Residential,"Flat no. 495, Block 14, Kaveri Apartments, D6, Vasant Kunj, Delhi - 110070",1431,99.38,2025-03-28 10:58:22
+1203240074,RERO-28,Residential,"569 sector A pocket C Vasant Kunj, Delhi - 110070",1440,100.0,2025-03-28 10:58:06
+1201240076,RESA-009,Residential,"H No.-296 Near Durga Ashram, Chhatarpur, Delhi-110074",1254,87.08,2025-03-28 10:58:37
+1212230160,RESA-010,Residential,"H No.-296 Near Durga Ashram, Chhatarpur, Delhi-110074",1215,84.38,2025-03-28 10:58:16
+1202240009,RESA-13,Office,"D-13A 2nd Floor Left side, Paryavaran Complex, Delhi 1100030",1427,99.1,2025-03-28 10:58:48
+1202240008,RESA-14,Office,"D-13A 2nd Floor Left side, Paryavaran Complex, Delhi 1100030",1429,99.24,2025-03-28 10:58:44
+1201240073,RESA-30,Residential,"569 sector A pocket C Vasant Kunj, Delhi - 110070",1,0.07,2025-03-27 23:46:01
+1203240080,RESF-007,Residential,"F-5, 318-N, Chirag Delhi, Delhi-110017",1061,73.68,2025-03-28 10:58:26
+1201240074,RESF-008,Residential,"F-5, 318-N, Chirag Delhi, Delhi-110017",1381,95.9,2025-03-28 10:58:28
+1203240077,REWZ - 21,Apartment,"B-2/51-A, Keshav Puram",712,49.44,2025-03-28 06:18:14
+1203240082,REWZ - 22,Apartment,"B-2/51-A, Keshav Puram",1326,92.08,2025-03-28 10:58:37
+1202240029,SCD8-017,School,"St. Mary's School, Dwarka Sec-19",1421,98.68,2025-03-28 10:58:44
+1202240028,SCD8-020,School,"St. Mary's School, Dwarka Sec-19",1419,98.54,2025-03-28 10:58:16
+1202240010,SCD8-18,School,"St. Mary's School, Dwarka Sec-19",1425,98.96,2025-03-28 10:58:50
+1202240012,SCD8-19,School,"St. Mary's School, Dwarka Sec-19",1417,98.4,2025-03-28 10:58:04
