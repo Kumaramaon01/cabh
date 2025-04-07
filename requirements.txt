@@ -4,3 +4,6 @@ pandas==2.2.3
 plotly
 mysql
 python-dotenv==1.0.1
+mysql==0.0.3
+mysqlclient==2.2.7
+PyMySQL==1.1.0
