@@ -4,11 +4,3 @@ pandas==2.2.3
 plotly
 mysql
 python-dotenv==1.0.1
-pandas
-streamlit
-plotly
-mysql-connector-python
-SQLAlchemy
-pymysql
-schedule
-Pillow
