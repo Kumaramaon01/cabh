@@ -82,7 +82,7 @@ with col3:
     if st.button('Analytics'):
         st.session_state.script_choice = "visual"
 with col4:
-    if st.button('last 24hr Device Data'):
+    if st.button('Last 24hr Device Data'):
         st.session_state.script_choice = "abdullah_work"
 # Set the default selected date to one day before the current date
 default_date = datetime.now() - timedelta(days=1)
