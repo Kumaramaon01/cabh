@@ -1,0 +1,33 @@
+deviceID,deployementID,typology,address,contact_person,contact_number,data_points_24h,data_percentage,last_timestamp
+1201240075,OFGSI-005,Office,"Hines Office, 12th Floor, One Horizon Centre, Sec-43, Gurugram",Mr. Dharmendra Singh (Assistant Manager-IT),9716820034,1,0.07,2025-04-07 12:25:02
+1201240078,OFGSI-006,Office,"Hines Office, 12th Floor, One Horizon Centre, Sec-43, Gurugram",Mr. Dharmendra Singh (Assistant Manager-IT),9716820034,822,57.08,2025-04-07 17:11:41
+1202240026,OFRK-11,Office,"D-1/25 Vasant Vihar , New Delhi-110057(EDS Delhi)",Mr. Abhishek Soni,9310646239,1420,98.61,2025-04-07 17:13:06
+1202240025,OFRK-12,Office,"D-1/25 Vasant Vihar , New Delhi-110057(EDS Delhi)",Mr. Abhishek Soni,9310646239,1407,97.71,2025-04-07 17:13:00
+1203240081,OFRK-26,Office,"26A Poorvi Marg, Vasant Vihar , New Delhi-110057
+(EDS, E-Block, Delhi)",Abhishek Soni,9310646239,1342,93.19,2025-04-07 17:12:53
+1202240011,RECR-15,Apartment,"D-188, Abul Fazal Enclave-I, Jamia Nagar, New Delhi-110025",Mariyam,9718224396,1422,98.75,2025-04-07 17:13:12
+1202240027,RECR-16,Apartment,"D-188, Abul Fazal Enclave-I, Jamia Nagar, New Delhi-110025",Mariyam,9718224396,1425,98.96,2025-04-07 17:13:09
+1203240076,RECR-23,Midrise Apartment (G+5),"D 184 ABUL FAZAL ENCLAVE, JAMIA NAGAR, OKHLA, NEW DELHI 25",Hisham Ahmed,9873065488,1421,98.68,2025-04-07 17:12:48
+1203240078,RECR-24,Midrise Apartment (G+5),"D 184 ABUL FAZAL ENCLAVE, JAMIA NAGAR, OKHLA, NEW DELHI 25",Hisham Ahmed,9873065488,1419,98.54,2025-04-07 17:13:13
+1203240075,RECR-31,Residential,"A 48/B, Third Floor, Abul Fazal Enclave Part II, New Delhi",Shahzeb,8287035226,1434,99.58,2025-04-07 17:13:18
+1201240077,RED8-003,Residential,"448, Sector-9, Pocket-1 DDA Flats Dwarka , New Delhi-110075",Lakshmi Ganesh Kamath,9811022520,881,61.18,2025-04-07 17:13:04
+1201240072,RED8-004,Residential,"448, Sector-9, Pocket-1 DDA Flats Dwarka , New Delhi-110075",Lakshmi Ganesh Kamath,9811022520,1263,87.71,2025-04-07 17:13:05
+1203240079,REPG - 29,"Residential, Multi-family","C-403, Prince Apartments, Plot 54, I.P. Extension, Patparganj, Delhi - 110092",Piyush Varma,9718906332,1400,97.22,2025-04-07 17:13:11
+1201240079,REPG-001,Residential,"B-3/527, Ekta Gardens Apts, Patparganj, Delhi - 110092",Mr. Piyush Verma,9718906332,1434,99.58,2025-04-07 17:13:04
+1201240085,REPG-002,Residential,"B-3/527, Ekta Gardens Apts, Patparganj, Delhi - 110092",Mr. Piyush Verma,9718906332,1413,98.12,2025-04-07 17:13:02
+1203240083,RERK-032,Residential,"Flat No. 25, Tower E2, Sector E1, Vasant Kunj, New Delhi",Sheetal Jain,9958692759,992,68.89,2025-04-07 17:13:27
+1203240073,RERK-27,Residential,"Flat no. 495, Block 14, Kaveri Apartments, D6, Vasant Kunj, Delhi - 110070",Nidhi,9819898045,95,6.6,2025-04-07 17:13:44
+1203240074,RERO-28,Residential,"569 sector A pocket C Vasant Kunj, Delhi - 110070",Ashish Jain,9891683061,1436,99.72,2025-04-07 17:13:17
+1201240076,RESA-009,Residential,"H No.-296 Near Durga Ashram, Chhatarpur, Delhi-110074",Mr. Surender Bhati,9555864378,1428,99.17,2025-04-07 17:13:22
+1212230160,RESA-010,Residential,"H No.-296 Near Durga Ashram, Chhatarpur, Delhi-110074",Mr. Surender Bhati,9555864378,1416,98.33,2025-04-07 17:12:42
+1202240009,RESA-13,Office,"D-13A 2nd Floor Left side, Paryavaran Complex, Delhi 1100030",Mr. Robin Jain,7062137067,1408,97.78,2025-04-07 17:13:31
+1202240008,RESA-14,Office,"D-13A 2nd Floor Left side, Paryavaran Complex, Delhi 1100030",Mr. Robin Jain,7062137067,1412,98.06,2025-04-07 17:13:17
+1201240073,RESA-30,Residential,"569 sector A pocket C Vasant Kunj, Delhi - 110070",Tanmay Tathagat,9711442008,1,0.07,2025-04-07 12:25:03
+1203240080,RESF-007,Residential,"F-5, 318-N, Chirag Delhi, Delhi-110017",Mr. Abhishek Jain,9990333248,1352,93.89,2025-04-07 17:12:36
+1201240074,RESF-008,Residential,"F-5, 318-N, Chirag Delhi, Delhi-110017",Mr. Abhishek Jain,9990333248,1377,95.62,2025-04-07 17:12:55
+1203240077,REWZ - 21,Apartment,"B-2/51-A, Keshav Puram",Gurneet Singh,9899240140,1,0.07,2025-04-07 12:25:03
+1203240082,REWZ - 22,Apartment,"B-2/51-A, Keshav Puram",Gurneet Singh,9899240140,1324,91.94,2025-04-07 17:13:50
+1202240029,SCD8-017,School,"St. Mary's School, Dwarka Sec-19",Mrs. Reena Khurana,9811349418,1421,98.68,2025-04-07 17:13:37
+1202240028,SCD8-020,School,"St. Mary's School, Dwarka Sec-19",Mrs. Reena Khurana,9811349418,1426,99.03,2025-04-07 17:13:33
+1202240010,SCD8-18,School,"St. Mary's School, Dwarka Sec-19",Mrs. Reena Khurana,9811349418,1424,98.89,2025-04-07 17:13:15
+1202240012,SCD8-19,School,"St. Mary's School, Dwarka Sec-19",Mrs. Reena Khurana,9811349418,1422,98.75,2025-04-07 17:13:19

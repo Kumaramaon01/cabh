@@ -1,0 +1,33 @@
+deviceID,deployementID,typology,address,data_points,data_percentage
+1201240073,RESA-30,Residential,"569 sector A pocket C Vasant Kunj, Delhi - 110070",1,0.07
+1201240078,OFGSI-006,Office,"Hines Office, 12th Floor, One Horizon Centre, Sec-43, Gurugram",0,0.0
+1201240075,OFGSI-005,Office,"Hines Office, 12th Floor, One Horizon Centre, Sec-43, Gurugram",0,0.0
+1202240025,OFRK-12,Office,"D-1/25 Vasant Vihar , New Delhi-110057(EDS Delhi)",0,0.0
+1203240081,OFRK-26,Office,"26A Poorvi Marg, Vasant Vihar , New Delhi-110057
+(EDS, E-Block, Delhi)",0,0.0
+1202240011,RECR-15,Apartment,"D-188, Abul Fazal Enclave-I, Jamia Nagar, New Delhi-110025",0,0.0
+1202240026,OFRK-11,Office,"D-1/25 Vasant Vihar , New Delhi-110057(EDS Delhi)",0,0.0
+1203240076,RECR-23,Midrise Apartment (G+5),"D 184 ABUL FAZAL ENCLAVE, JAMIA NAGAR, OKHLA, NEW DELHI 25",0,0.0
+1203240078,RECR-24,Midrise Apartment (G+5),"D 184 ABUL FAZAL ENCLAVE, JAMIA NAGAR, OKHLA, NEW DELHI 25",0,0.0
+1203240075,RECR-31,Residential,"A 48/B, Third Floor, Abul Fazal Enclave Part II, New Delhi",0,0.0
+1201240077,RED8-003,Residential,"448, Sector-9, Pocket-1 DDA Flats Dwarka , New Delhi-110075",0,0.0
+1201240072,RED8-004,Residential,"448, Sector-9, Pocket-1 DDA Flats Dwarka , New Delhi-110075",0,0.0
+1203240079,REPG - 29,"Residential, Multi-family","C-403, Prince Apartments, Plot 54, I.P. Extension, Patparganj, Delhi - 110092",0,0.0
+1201240079,REPG-001,Residential,"B-3/527, Ekta Gardens Apts, Patparganj, Delhi - 110092",0,0.0
+1202240027,RECR-16,Apartment,"D-188, Abul Fazal Enclave-I, Jamia Nagar, New Delhi-110025",0,0.0
+1201240085,REPG-002,Residential,"B-3/527, Ekta Gardens Apts, Patparganj, Delhi - 110092",0,0.0
+1203240083,RERK-032,Residential,"Flat No. 25, Tower E2, Sector E1, Vasant Kunj, New Delhi",0,0.0
+1203240074,RERO-28,Residential,"569 sector A pocket C Vasant Kunj, Delhi - 110070",0,0.0
+1203240073,RERK-27,Residential,"Flat no. 495, Block 14, Kaveri Apartments, D6, Vasant Kunj, Delhi - 110070",0,0.0
+1201240076,RESA-009,Residential,"H No.-296 Near Durga Ashram, Chhatarpur, Delhi-110074",0,0.0
+1212230160,RESA-010,Residential,"H No.-296 Near Durga Ashram, Chhatarpur, Delhi-110074",0,0.0
+1202240009,RESA-13,Office,"D-13A 2nd Floor Left side, Paryavaran Complex, Delhi 1100030",0,0.0
+1202240008,RESA-14,Office,"D-13A 2nd Floor Left side, Paryavaran Complex, Delhi 1100030",0,0.0
+1203240080,RESF-007,Residential,"F-5, 318-N, Chirag Delhi, Delhi-110017",0,0.0
+1201240074,RESF-008,Residential,"F-5, 318-N, Chirag Delhi, Delhi-110017",0,0.0
+1203240077,REWZ - 21,Apartment,"B-2/51-A, Keshav Puram",0,0.0
+1203240082,REWZ - 22,Apartment,"B-2/51-A, Keshav Puram",0,0.0
+1202240029,SCD8-017,School,"St. Mary's School, Dwarka Sec-19",0,0.0
+1202240028,SCD8-020,School,"St. Mary's School, Dwarka Sec-19",0,0.0
+1202240010,SCD8-18,School,"St. Mary's School, Dwarka Sec-19",0,0.0
+1202240012,SCD8-19,School,"St. Mary's School, Dwarka Sec-19",0,0.0

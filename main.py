@@ -71,7 +71,7 @@ st.markdown("""
 if 'script_choice' not in st.session_state:
     st.session_state.script_choice = "people"  # Set default to "about"
 
-col1, col2, col3 = st.columns(3)
+col1, col2, col3, col4 = st.columns(4)
 with col1:
     if st.button('People EDS'):
         st.session_state.script_choice = "people"
@@ -81,6 +81,9 @@ with col2:
 with col3:
     if st.button('Analytics'):
         st.session_state.script_choice = "visual"
+with col4:
+    if st.button('Device Data'):
+        st.session_state.script_choice = "abdullah_work"
 # Set the default selected date to one day before the current date
 default_date = datetime.now() - timedelta(days=1)
 #Based on the user selection, display appropriate input fields and run the script
@@ -681,6 +684,13 @@ if st.session_state.script_choice == "data":
     
         # Close the connection
         connection.close()
+
+if st.session_state.script_choice == "abdullah_work":
+    from app import main  # assuming app.py has a `main()` function
+    try:
+        main()
+    except Exception as e:
+        print(f"Failed to run script!!")
     
 #Based on the user selection, display appropriate input fields and run the script
 if st.session_state.script_choice == "visual":
