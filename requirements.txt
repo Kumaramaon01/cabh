@@ -6,3 +6,6 @@ plotly
 mysql-connector-python
 sqlalchemy
 schedule
+seaborn
+matplotlib
+numpy
